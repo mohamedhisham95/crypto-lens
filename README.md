@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📊 Crypto Insights — Stock & Crypto Analytics Dashboard
 
-## Getting Started
+A **personal hobby project** exploring financial APIs and crypto market data.  
+Built using **Next.js**, **TypeScript**, **React Query**, **TailwindCSS**, **shadcn/ui**, **Recharts**, and **ECharts**.  
+The app fetches cryptocurrency market data from [CoinGecko API](https://www.coingecko.com/),  
+displays price trends, OHLC charts, and other insights for traders and enthusiasts.
 
-First, run the development server:
+> ⚠️ **Disclaimer**
+>
+> - All cryptocurrency data is provided by the [CoinGecko API](https://www.coingecko.com/).
+> - Data is **not real-time** — CoinGecko free plan enforces a **15-minute cache**.
+> - This project is **not financial advice**.
+> - It’s a **personal hobby project** exploring finance APIs and frontend optimizations.
+
+---
+
+## ✨ Features
+
+- 🔹 **Crypto Market Data** — Fetches cryptocurrency price data using the CoinGecko API.
+- 📈 **Interactive Charts** —
+  - **ECharts** for advanced OHLC & candlestick visualizations.
+  - **Recharts** for area charts and simple trend displays.
+- ⚡ **Optimized Data Fetching** — Built with **React Query** for caching and API efficiency.
+- 🎨 **Modern UI** — Responsive and sleek UI using **TailwindCSS** + **shadcn/ui**.
+- 🌙 **Dark & Light Theme** — Seamless theme switching with `next-themes`.
+- 🛠️ **TypeScript Ready** — Fully typed for better maintainability.
+
+---
+
+## 🖼️ Preview
+
+> _(Add a screenshot or GIF of your dashboard here if possible)_
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) + [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [TailwindCSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/)
+- **Charts**: [Apache ECharts](https://echarts.apache.org/en/index.html) + [Recharts](https://recharts.org/en-US/)
+- **Data Fetching**: [React Query](https://tanstack.com/query)
+- **API Source**: [CoinGecko API](https://www.coingecko.com/en/api)
+- **Icons**: [lucide-react](https://lucide.dev/)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/crypto-insights.git
+cd crypto-insights
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Set Up Environment Variables
 
-## Learn More
+Create a .env.local file:
 
-To learn more about Next.js, take a look at the following resources:
+```
+COINGECKO_API_KEY=https://api.coingecko.com/api/v3
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Run the Development Server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+npm run dev
+```
 
-## Deploy on Vercel
+Your app will be running at http://localhost:3000
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with ❤️ using Next.js, React, Shadcn, Tailwind CSS, ECharts, Recharts, and CoinGecko API
+This is just a hobby project — not financial advice!
