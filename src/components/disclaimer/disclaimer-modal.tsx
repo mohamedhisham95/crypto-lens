@@ -33,7 +33,12 @@ export function DisclaimerModal() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="max-w-lg">
+      <DialogContent
+        className="max-w-lg"
+        onInteractOutside={(e) => {
+          e.preventDefault();
+        }}
+      >
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold">
             Disclaimer

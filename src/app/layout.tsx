@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { Toaster } from 'sonner';
 
 // Providers
 import { AppProviders } from '@/providers/app-provider';
@@ -34,7 +33,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AppProviders>{children}</AppProviders>
-        <Toaster richColors />
       </body>
     </html>
   );
