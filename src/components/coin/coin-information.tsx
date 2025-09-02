@@ -6,14 +6,11 @@ import Image from 'next/image';
 // Icons
 import { Info } from 'lucide-react';
 
-// Lib
-import { formatCurrency } from '@/lib/formatter';
-
 // Types
 import type { CoinInfo } from '@/types/coin';
 
 // Components
-import { Percentage } from '@/components/common';
+import { Percentage, PriceCountUp } from '@/components/common';
 
 // UI
 import { Card, CardContent } from '@/components/ui/card';
@@ -87,9 +84,7 @@ export const CoinInformation = React.memo(function CoinInformation({
 
             <div className="flex flex-col gap-2">
               <div className="text-base font-semibold">
-                {formatCurrency({
-                  amount: data?.current_price_in_usd,
-                })}
+                <PriceCountUp value={data?.current_price_in_usd} />
               </div>
 
               <div className="flex items-center gap-2">
