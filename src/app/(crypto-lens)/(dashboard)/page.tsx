@@ -1,9 +1,14 @@
 // Actions
 import { getTopGainersLosers, getGlobalData } from '@/actions';
 
+// Lib
+import { getMetadata } from '@/lib/metadata';
+
 // Components
 import { TopGainersLosers, MarketCap, Volume } from '@/components/dashboard';
 import { AlertMessage } from '@/components/common';
+
+export const metadata = getMetadata('dashboard');
 
 export default async function DashboardPage() {
   const topGainerLosersData = await getTopGainersLosers();

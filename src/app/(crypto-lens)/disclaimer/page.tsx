@@ -1,5 +1,10 @@
 import Link from 'next/link';
 
+// Lib
+import { getMetadata } from '@/lib/metadata';
+
+export const metadata = getMetadata('disclaimer');
+
 export default function DisclaimerPage() {
   return (
     <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">

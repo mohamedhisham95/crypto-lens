@@ -1,6 +1,9 @@
 // Actions
 import { getCoinData } from '@/actions/';
 
+// Lib
+import { getMetadata } from '@/lib/metadata';
+
 // Components
 import { AlertMessage } from '@/components/common';
 import {
@@ -12,6 +15,8 @@ import {
   PriceChangePercentage,
   CandlestickChart,
 } from '@/components/coin';
+
+export const metadata = getMetadata('coin_analysis');
 
 export default async function CoinPage({
   params,
