@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 // UI
 import {
@@ -16,6 +16,10 @@ import { Button } from '@/components/ui/button';
 const LOCAL_STORAGE_KEY = 'disclaimer_accepted';
 
 export function DisclaimerModal() {
+  // Router
+  const router = useRouter();
+
+  // Local State
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -25,6 +29,12 @@ export function DisclaimerModal() {
       setOpen(true);
     }
   }, []);
+
+  const handleAcceptAndGoToDisclaimerPage = () => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
+    setOpen(false);
+    router.push('/disclaimer');
+  };
 
   const handleAccept = () => {
     localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
@@ -38,6 +48,7 @@ export function DisclaimerModal() {
         onInteractOutside={(e) => {
           e.preventDefault();
         }}
+        showCloseButton={false}
       >
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold">
@@ -78,10 +89,12 @@ export function DisclaimerModal() {
           </ul>
         </div>
         <DialogFooter className="flex justify-between">
-          <Button variant="outline">
-            <Link href="/disclaimer" className="text-sm text-muted-foreground">
-              Read Full Disclaimer
-            </Link>
+          <Button
+            variant="secondary"
+            className="font-medium"
+            onClick={handleAcceptAndGoToDisclaimerPage}
+          >
+            I Understand & Go to Disclaimer Page
           </Button>
           <Button onClick={handleAccept} className="font-medium">
             I Understand

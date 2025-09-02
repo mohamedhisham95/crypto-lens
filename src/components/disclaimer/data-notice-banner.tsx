@@ -26,7 +26,7 @@ export function DataNoticeBanner() {
   if (!visible) return null;
 
   return (
-    <div className="w-full bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-100 text-sm px-4 py-2 flex items-center justify-between shadow-sm rounded-l-lg">
+    <div className="w-full bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-100 text-sm px-4 py-2 flex items-center justify-between shadow-sm rounded-lg">
       <p>
         ⚠️ Market data is provided by{' '}
         <a

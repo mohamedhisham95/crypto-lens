@@ -34,7 +34,7 @@ export function TopGainersLosers({ title, data = [] }: Props) {
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent className="px-0">
-        <Table>
+        <Table className="overflow-auto">
           <TableHeader>
             <TableRow className="bg-muted/50">
               <TableHead>#</TableHead>
@@ -53,7 +53,7 @@ export function TopGainersLosers({ title, data = [] }: Props) {
                   {coin?.market_cap_rank}
                 </TableCell>
                 <TableCell>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <Image
                       src={coin.image}
                       width={24}
@@ -61,7 +61,7 @@ export function TopGainersLosers({ title, data = [] }: Props) {
                       alt={coin.name}
                       className="w-6 h-6"
                     />
-                    <span>{coin.name}</span>
+                    <span className="truncate">{coin.name}</span>
                   </div>
                 </TableCell>
                 <TableCell className="text-right">
