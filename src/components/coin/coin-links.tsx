@@ -36,31 +36,58 @@ export function CoinLinks({ title, data, className }: Props) {
             <TableRow className="bg-muted/50">
               <TableCell>Website</TableCell>
               <TableCell className="text-right">
-                <Link href={data?.homepage[0]} target="_blank">
-                  <Badge variant="secondary">
-                    {removeProtocol(data?.homepage[0] ?? '')}
+                {data?.homepage[0] ? (
+                  <Link href={data?.homepage[0]} target="_blank">
+                    <Badge variant="secondary">
+                      {removeProtocol(data?.homepage[0])}
+                    </Badge>
+                  </Link>
+                ) : (
+                  <Badge
+                    variant="secondary"
+                    className="pointer-events-none opacity-50"
+                  >
+                    -
                   </Badge>
-                </Link>
+                )}
               </TableCell>
             </TableRow>
             <TableRow>
               <TableHead>Official Forum</TableHead>
               <TableCell className="text-right">
-                <Link href={data?.official_forum_url[0]} target="_blank">
-                  <Badge variant="secondary">
-                    {removeProtocol(data?.official_forum_url[0] ?? '')}
+                {data?.official_forum_url?.[0] ? (
+                  <Link href={data.official_forum_url[0]} target="_blank">
+                    <Badge variant="secondary">
+                      {removeProtocol(data.official_forum_url[0])}
+                    </Badge>
+                  </Link>
+                ) : (
+                  <Badge
+                    variant="secondary"
+                    className="pointer-events-none opacity-50"
+                  >
+                    -
                   </Badge>
-                </Link>
+                )}
               </TableCell>
             </TableRow>
             <TableRow className="bg-muted/50">
               <TableCell>Redit</TableCell>
               <TableCell className="text-right">
-                <Link href={data?.subreddit_url} target="_blank">
-                  <Badge variant="secondary">
-                    {removeProtocol(data?.subreddit_url ?? '')}
+                {data?.subreddit_url ? (
+                  <Link href={data.subreddit_url} target="_blank">
+                    <Badge variant="secondary">
+                      {removeProtocol(data.subreddit_url)}
+                    </Badge>
+                  </Link>
+                ) : (
+                  <Badge
+                    variant="secondary"
+                    className="pointer-events-none opacity-50"
+                  >
+                    -
                   </Badge>
-                </Link>
+                )}
               </TableCell>
             </TableRow>
           </TableBody>

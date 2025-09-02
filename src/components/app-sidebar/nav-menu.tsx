@@ -1,17 +1,16 @@
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 // Icons
-import { type LucideIcon } from "lucide-react";
+import { type LucideIcon } from 'lucide-react';
 
 // Ui
 import {
   SidebarGroup,
-  // SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar';
 
 export function NavMenu({
   items,
@@ -31,11 +30,17 @@ export function NavMenu({
 
   return (
     <SidebarGroup>
-      {/* <SidebarGroupLabel>Platform</SidebarGroupLabel> */}
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.title}>
-            <SidebarMenuButton asChild isActive={item.url === pathname}>
+            <SidebarMenuButton
+              asChild
+              isActive={
+                item.title === 'Coin Analysis'
+                  ? pathname.includes('/coin')
+                  : item.url === pathname
+              }
+            >
               <Link href={item.url}>
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
