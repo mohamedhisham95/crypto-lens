@@ -4,13 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 
 // Icons
-import {
-  ChartNoAxesCombined,
-  ChartPie,
-  Coins,
-  GitCompare,
-  Info,
-} from 'lucide-react';
+import { ChartNoAxesCombined, Coins, GitCompare, Info } from 'lucide-react';
 
 // Components
 import { NavMenu } from '@/components/app-sidebar/nav-menu';
