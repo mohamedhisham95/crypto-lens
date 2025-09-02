@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-// Lib
-import { formatCurrency } from '@/lib/formatter';
+// Components
+import { PriceCountUp } from '@/components/common';
 
 // UI
 import {
@@ -35,10 +35,10 @@ export function Volume({ totalVolume }: Props) {
           24H Trading Volume
         </CardDescription>
         <CardTitle>
-          {formatCurrency({
-            amount: totalVolume[currency],
-            currency: currency.toUpperCase(),
-          })}
+          <PriceCountUp
+            value={totalVolume[currency]}
+            currency={currency.toUpperCase()}
+          />
         </CardTitle>
         <CardAction>
           <Select value={currency} onValueChange={setCurrency}>

@@ -2,11 +2,8 @@
 
 import { useState } from 'react';
 
-// Lib
-import { formatCurrency } from '@/lib/formatter';
-
 // Components
-import { Percentage } from '@/components/common';
+import { Percentage, PriceCountUp } from '@/components/common';
 
 // UI
 import {
@@ -47,10 +44,10 @@ export function MarketCap({ totalMarketCap, chgPercentage24h }: Props) {
           </span>
         </CardDescription>
         <CardTitle>
-          {formatCurrency({
-            amount: totalMarketCap[currency],
-            currency: currency.toUpperCase(),
-          })}
+          <PriceCountUp
+            value={totalMarketCap[currency]}
+            currency={currency.toUpperCase()}
+          />
         </CardTitle>
         <CardAction>
           <Select value={currency} onValueChange={setCurrency}>

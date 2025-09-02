@@ -2,7 +2,8 @@
 import { BaseAPIError } from '@/types/api';
 
 const KEY = process.env.COINGECKO_API_KEY || '';
-const BASE = 'https://api.coingecko.com/api/v3'; // Demo/Public base
+const BASE =
+  process.env.COINGECKO_BASE_URL || 'https://api.coingecko.com/api/v3'; // Demo/Public base
 const HEADER_NAME = 'x-cg-demo-api-key'; // Header names per docs
 
 type FetchOpts = {
