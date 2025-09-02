@@ -8,6 +8,7 @@ import coin_gecko_powered_by_banner from '@/assets/coin_gecko_powered_by_banner.
 // Components
 import { AppSidebar } from '@/components/app-sidebar';
 import { ThemeModeToggle, BreadCrumbHeader } from '@/components/common';
+import { DisclaimerModal, DataNoticeBanner } from '@/components/disclaimer';
 
 // UI
 import {
@@ -26,16 +27,24 @@ export default function DashboardLayout({
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset className="flex flex-col gap-3 px-2">
-        <header
-          // className="flex h-16 shrink-0 items-center justify-between gap-2"
-          className="flex h-16 shrink-0 items-center justify-between gap-2 sticky top-0 z-50 bg-background"
-        >
+        {/* <header className="flex h-16 shrink-0 items-center justify-between gap-2 sticky top-0 z-50 bg-background">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
             <BreadCrumbHeader />
           </div>
           <ThemeModeToggle />
+        </header> */}
+        <header className="flex flex-col shrink-0 gap-2 sticky top-0 z-50 bg-background py-2">
+          <DataNoticeBanner />
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 px-4">
+              <SidebarTrigger className="-ml-1" />
+              <Separator orientation="vertical" className="mr-2 h-4" />
+              <BreadCrumbHeader />
+            </div>
+            <ThemeModeToggle />
+          </div>
         </header>
         <main className="p-2 lg:p-4 h-[calc(100%-64px)] z-10">{children}</main>
         <footer className="flex shrink-0 items-center justify-end border-t bg-background p-2 lg:p-4">
@@ -49,6 +58,7 @@ export default function DashboardLayout({
             />
           </Link>
         </footer>
+        <DisclaimerModal />
       </SidebarInset>
     </SidebarProvider>
   );
