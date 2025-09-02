@@ -1,4 +1,4 @@
-# 📊 Crypto Insights — Stock & Crypto Analytics Dashboard
+# 📊 Crypto Lens — Stock & Crypto Analytics Dashboard
 
 A **personal hobby project** exploring financial APIs and crypto market data.  
 Built using **Next.js**, **TypeScript**, **React Query**, **TailwindCSS**, **shadcn/ui**, **Recharts**, and **ECharts**.  
@@ -29,7 +29,7 @@ displays price trends, OHLC charts, and other insights for traders and enthusias
 
 ## 🖼️ Preview
 
-> _(Add a screenshot or GIF of your dashboard here if possible)_
+> _(Add a screenshot or GIF of your dashboard here)_
 
 ---
 
@@ -64,7 +64,7 @@ npm install
 Create a .env.local file:
 
 ```
-COINGECKO_API_KEY=https://api.coingecko.com/api/v3
+COINGECKO_API_KEY=api_key_from_coingecko
 ```
 
 ### 4. Run the Development Server
