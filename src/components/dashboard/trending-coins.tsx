@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/formatter';
 
 // Types
-import { CoinList } from '@/types/coin';
+import type { TrendingCoins } from '@/types/dashboard';
 
 // Common
-import { Percentage, TooltipWrapper } from '@/components/common';
+import { Percentage } from '@/components/common';
 
 // UI
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -25,12 +25,13 @@ import {
 
 type Props = {
   title: string;
-  data: CoinList[];
+  data: TrendingCoins[];
+  className?: string;
 };
 
-export function TopGainersLosers({ title, data = [] }: Props) {
+export function TrendingCoins({ title, data = [], className = '' }: Props) {
   return (
-    <Card className="px-0">
+    <Card className={`px-0 ${className}`}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
@@ -45,7 +46,10 @@ export function TopGainersLosers({ title, data = [] }: Props) {
                 Name
               </TableHead>
               <TableHead className="text-muted-foreground font-semibold text-right">
-                Volume
+                Price
+              </TableHead>
+              <TableHead className="text-muted-foreground font-semibold text-right">
+                Market Cap
               </TableHead>
               <TableHead className="text-muted-foreground font-semibold text-right">
                 Chg % (24H)
@@ -53,46 +57,39 @@ export function TopGainersLosers({ title, data = [] }: Props) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data.map((coin, index) => (
+            {data.map(({ item }, index) => (
               <TableRow
                 key={index}
                 className={cn(index % 2 !== 0 && 'bg-muted/50')}
               >
                 <TableCell className="text-muted-foreground">
-                  {coin.market_cap_rank}
+                  {item.market_cap_rank}
                 </TableCell>
                 <TableCell>
-                  <Link href={`/coin/${coin.id}`}>
+                  <Link href={`/coin/${item.id}`}>
                     <div className="flex items-center gap-2 flex-wrap">
                       <Image
-                        src={coin.image}
+                        src={item.large}
                         width={24}
                         height={24}
-                        alt={coin.name}
+                        alt={item.name}
                         className="w-6 h-6"
                       />
-                      <span className="truncate">{coin.name}</span>
+                      <span className="truncate">{item.name}</span>
                     </div>
                   </Link>
                 </TableCell>
-                <TableCell>
-                  <TooltipWrapper
-                    side="bottom"
-                    content={formatCurrency({
-                      amount: coin.total_volume,
-                      compact: true,
-                    })}
-                  >
-                    <div className="flex justify-end cursor-pointer">
-                      {formatCurrency({
-                        amount: coin.total_volume,
-                      })}
-                    </div>
-                  </TooltipWrapper>
+                <TableCell className="text-right">
+                  {formatCurrency({
+                    amount: item?.data?.price,
+                  })}
+                </TableCell>
+                <TableCell className="text-right">
+                  {item?.data?.market_cap}
                 </TableCell>
                 <TableCell>
                   <Percentage
-                    value={coin.price_change_percentage_24h}
+                    value={item.data?.price_change_percentage_24h['usd']}
                     decimals={3}
                   />
                 </TableCell>

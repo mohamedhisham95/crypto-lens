@@ -1,4 +1,5 @@
-import { CoinList } from './coin';
+// Type
+import { CoinList, CurrencyMap } from './coin';
 
 // Top Gainers/Losers
 export type TopGainersLosersResponse =
@@ -31,5 +32,35 @@ export type GlobalDataResponse =
   | {
       success: true;
       global_data: GlobalData;
+    }
+  | { success: false; code: number; message: string };
+
+// Trending Coins
+
+export interface TrendingCoins {
+  item: {
+    id: string;
+    name: string;
+    symbol: string;
+    market_cap_rank: number;
+    large: string;
+    data: {
+      price: number;
+      price_change_percentage_24h: CurrencyMap;
+      market_cap: string;
+      total_volume: string;
+      sparkline: string;
+    };
+  };
+}
+
+export interface TransformedTrendingCoins {
+  coins: TrendingCoins[];
+}
+
+export type TrendingCoinsResponse =
+  | {
+      success: true;
+      coins: TrendingCoins[];
     }
   | { success: false; code: number; message: string };
