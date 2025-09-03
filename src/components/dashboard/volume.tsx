@@ -32,6 +32,7 @@ type Props = {
 };
 
 export function Volume({ totalVolume }: Props) {
+  // Local State
   const [currency, setCurrency] = useState('usd');
 
   return (

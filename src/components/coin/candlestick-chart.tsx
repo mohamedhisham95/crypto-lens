@@ -17,7 +17,7 @@ import { CoinOHLCChartDataResponse } from '@/types/coin';
 
 // Components
 import { AlertMessage } from '@/components/common';
-import { CandlestickChartSkeleton } from '@/components/skeletons';
+import { AreaChartSkeleton } from '@/components/skeletons';
 
 // UI
 import {
@@ -350,9 +350,9 @@ export const CandlestickChart = React.memo(function CandlestickChart({
         </CardAction>
       </CardHeader>
       <CardContent className="px-0 max-h-[500px] h-[500px]">
-        {isFetching ? (
+        {!isFetching ? (
           <div className="h-[500px] relative flex items-center justify-center bg-transparent">
-            <CandlestickChartSkeleton />
+            <AreaChartSkeleton />
           </div>
         ) : data && data.success && !isFetching && option !== null ? (
           <ReactECharts option={option} style={{ height: '100%' }} />

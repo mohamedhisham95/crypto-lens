@@ -49,13 +49,15 @@ export const CoinInformation = React.memo(function CoinInformation({
           <>
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
-                <Image
-                  src={data?.image}
-                  width={24}
-                  height={24}
-                  alt={data?.symbol}
-                  className="h-6 w-6 object-contain"
-                />
+                {data?.image && (
+                  <Image
+                    src={data?.image}
+                    width={24}
+                    height={24}
+                    alt={data?.symbol}
+                    className="h-6 w-6 object-contain"
+                  />
+                )}
                 <span className="text-lg font-semibold">{data?.name}</span>
               </div>
 

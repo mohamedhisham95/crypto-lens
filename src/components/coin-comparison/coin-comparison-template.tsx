@@ -31,6 +31,7 @@ export function CoinComparisonTemplate({ defaultCoin }: Props) {
   const { data: coinData, isFetching } = useQuery<CoinDataResponse>({
     queryKey: ['coin_data', coinId],
     queryFn: () => getCoinData(coinId),
+    refetchInterval: 15 * 60 * 1000, // Minutes
   });
 
   // Handle Select Coin Callback
