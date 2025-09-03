@@ -97,8 +97,8 @@ export function PriceChangePercentage({ data }: Props) {
   }, [data, currency]);
 
   return (
-    <div className="grid grid-cols-3 xl:grid-cols-4 gap-4">
-      <div className="col-span-3 xl:col-span-4 flex items-center justify-between bg-card border rounded-xl p-3">
+    <div className="grid grid-cols-3 gap-4">
+      <div className="col-span-3 flex items-center justify-between bg-card border rounded-xl p-3">
         <span className="leading-none font-semibold">Price Change & %</span>
 
         <Select value={currency} onValueChange={setCurrency}>

@@ -2,8 +2,14 @@
 
 import { useState } from 'react';
 
+// Icons
+import { Info } from 'lucide-react';
+
+// Lib
+import { formatCurrency } from '@/lib/formatter';
+
 // Components
-import { Percentage, PriceCountUp } from '@/components/common';
+import { Percentage, PriceCountUp, TooltipWrapper } from '@/components/common';
 
 // UI
 import {
@@ -44,10 +50,21 @@ export function MarketCap({ totalMarketCap, chgPercentage24h }: Props) {
           </span>
         </CardDescription>
         <CardTitle>
-          <PriceCountUp
-            value={totalMarketCap[currency]}
-            currency={currency.toUpperCase()}
-          />
+          <div className="flex items-center gap-4">
+            <PriceCountUp
+              value={totalMarketCap[currency]}
+              currency={currency.toUpperCase()}
+            />
+            <TooltipWrapper
+              side="bottom"
+              content={formatCurrency({
+                amount: totalMarketCap[currency],
+                compact: true,
+              })}
+            >
+              <Info className="icon-sm" />
+            </TooltipWrapper>
+          </div>
         </CardTitle>
         <CardAction>
           <Select value={currency} onValueChange={setCurrency}>

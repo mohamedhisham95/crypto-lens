@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 // Lib
 import { removeProtocol } from '@/lib/formatter';
@@ -8,6 +9,7 @@ import { Links } from '@/types/coin';
 
 // UI
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import {
   Table,
   TableBody,
@@ -15,8 +17,6 @@ import {
   TableHead,
   TableRow,
 } from '@/components/ui/table';
-import { Badge } from '../ui/badge';
-import Link from 'next/link';
 
 type Props = {
   title: string;

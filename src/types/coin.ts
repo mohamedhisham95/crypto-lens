@@ -25,12 +25,11 @@ export interface CoinList {
   atl: number;
   atl_change_percentage: number;
   atl_date: string;
-  roi: null | {
-    times: number;
-    currency: string;
-    percentage: number;
-  };
+  roi: null;
   last_updated: string;
+  price_change_percentage_1h_in_currency: number;
+  price_change_percentage_24h_in_currency: number;
+  price_change_percentage_7d_in_currency: number;
 }
 
 // Coin Search

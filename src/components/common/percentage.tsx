@@ -19,15 +19,23 @@ export function Percentage({
         'flex items-center gap-1',
         text_size,
         position,
-        value > 0
-          ? 'text-primary'
-          : value < 0
-          ? 'text-destructive'
+        typeof value === 'number'
+          ? value > 0
+            ? 'text-primary'
+            : value < 0
+            ? 'text-destructive'
+            : 'text-primary-foreground'
           : 'text-primary-foreground'
       )}
     >
-      {value > 0 ? '▲' : value < 0 ? '▼' : ''}
-      <span>{value.toFixed(decimals)}%</span>
+      {typeof value === 'number' ? (
+        <>
+          {value > 0 ? '▲' : value < 0 ? '▼' : ''}
+          <span>{value.toFixed(decimals)}%</span>
+        </>
+      ) : (
+        <span>-</span>
+      )}
     </div>
   );
 }

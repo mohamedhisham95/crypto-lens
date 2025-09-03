@@ -9,7 +9,7 @@ import { formatCurrency } from '@/lib/formatter';
 import { CoinList } from '@/types/coin';
 
 // Common
-import { Percentage } from '@/components/common';
+import { Percentage, TooltipWrapper } from '@/components/common';
 
 // UI
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -21,6 +21,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import Link from 'next/link';
 
 type Props = {
   title: string;
@@ -37,10 +38,18 @@ export function TopGainersLosers({ title, data = [] }: Props) {
         <Table className="overflow-auto">
           <TableHeader>
             <TableRow className="bg-muted/50">
-              <TableHead>#</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead className="text-right">Volume</TableHead>
-              <TableHead className="text-right">Chg %</TableHead>
+              <TableHead className="text-muted-foreground font-semibold">
+                #
+              </TableHead>
+              <TableHead className="text-muted-foreground font-semibold">
+                Name
+              </TableHead>
+              <TableHead className="text-muted-foreground font-semibold text-right">
+                Volume
+              </TableHead>
+              <TableHead className="text-muted-foreground font-semibold text-right">
+                Chg %
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -49,23 +58,37 @@ export function TopGainersLosers({ title, data = [] }: Props) {
                 key={index}
                 className={cn(index % 2 !== 0 && 'bg-muted/50')}
               >
-                <TableCell className="font-medium">
-                  {coin?.market_cap_rank}
+                <TableCell className="text-muted-foreground">
+                  {coin.market_cap_rank}
                 </TableCell>
                 <TableCell>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Image
-                      src={coin.image}
-                      width={24}
-                      height={24}
-                      alt={coin.name}
-                      className="w-6 h-6"
-                    />
-                    <span className="truncate">{coin.name}</span>
-                  </div>
+                  <Link href={`/coin/${coin.id}`}>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <Image
+                        src={coin.image}
+                        width={24}
+                        height={24}
+                        alt={coin.name}
+                        className="w-6 h-6"
+                      />
+                      <span className="truncate">{coin.name}</span>
+                    </div>
+                  </Link>
                 </TableCell>
-                <TableCell className="text-right">
-                  {formatCurrency({ amount: coin.total_volume })}
+                <TableCell>
+                  <TooltipWrapper
+                    side="bottom"
+                    content={formatCurrency({
+                      amount: coin.total_volume,
+                      compact: true,
+                    })}
+                  >
+                    <div className="flex justify-end cursor-pointer">
+                      {formatCurrency({
+                        amount: coin.total_volume,
+                      })}
+                    </div>
+                  </TooltipWrapper>
                 </TableCell>
                 <TableCell>
                   <Percentage

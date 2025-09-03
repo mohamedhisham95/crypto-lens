@@ -49,7 +49,7 @@ export const PriceRangeBar = ({
 
         {/* The current price marker, positioned dynamically with 'left' */}
         <div
-          className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 w-3 h-3 bg-accent-foreground rounded-full shadow-md z-10"
+          className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 w-3 h-3 bg-muted-foreground dark:bg-accent-foreground rounded-full shadow-md z-10"
           style={{ left: `${positionPercentage}%` }}
           aria-label="Current Price Marker"
         ></div>

@@ -13,6 +13,8 @@ import { CoinOverview } from '@/types/coin';
 import { PriceRangeBar } from '@/components/common';
 
 // UI
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   Card,
   CardAction,
@@ -20,7 +22,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import {
   Select,
   SelectContent,
@@ -28,7 +29,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Skeleton } from '@/components/ui/skeleton';
 
 type Props = {
   title: string;
@@ -156,7 +156,7 @@ export function Overview({ title, data, className, isFetching }: Props) {
                             amount: item.value,
                             currency: currency.toUpperCase(),
                           })
-                        : item.value.toFixed(1)}
+                        : item.value.toFixed(1) || '-'}
                     </TableCell>
                   </TableRow>
                 ))}

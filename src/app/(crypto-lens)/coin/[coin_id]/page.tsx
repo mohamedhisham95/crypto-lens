@@ -82,7 +82,7 @@ export default async function CoinPage({
           <CoinLinks
             title="Links"
             data={coinData?.coin_links}
-            className="col-span-1 xl:col-span-2"
+            className="col-span-1 xl:col-span-3"
           />
         )}
       </div>

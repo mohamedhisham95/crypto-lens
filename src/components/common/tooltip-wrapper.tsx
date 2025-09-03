@@ -10,11 +10,11 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 
-interface Props {
+type Props = {
   children: ReactNode;
   content: ReactNode;
   side?: 'top' | 'bottom' | 'left' | 'right';
-}
+};
 
 export function TooltipWrapper(props: Props) {
   if (!props.content) return props.children;

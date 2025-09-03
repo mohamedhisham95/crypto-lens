@@ -2,8 +2,14 @@
 
 import { useState } from 'react';
 
+// Icons
+import { Info } from 'lucide-react';
+
+// Lib
+import { formatCurrency } from '@/lib/formatter';
+
 // Components
-import { PriceCountUp } from '@/components/common';
+import { PriceCountUp, TooltipWrapper } from '@/components/common';
 
 // UI
 import {
@@ -35,10 +41,21 @@ export function Volume({ totalVolume }: Props) {
           24H Trading Volume
         </CardDescription>
         <CardTitle>
-          <PriceCountUp
-            value={totalVolume[currency]}
-            currency={currency.toUpperCase()}
-          />
+          <div className="flex items-center gap-4">
+            <PriceCountUp
+              value={totalVolume[currency]}
+              currency={currency.toUpperCase()}
+            />
+            <TooltipWrapper
+              side="bottom"
+              content={formatCurrency({
+                amount: totalVolume[currency],
+                compact: true,
+              })}
+            >
+              <Info className="icon-sm" />
+            </TooltipWrapper>
+          </div>
         </CardTitle>
         <CardAction>
           <Select value={currency} onValueChange={setCurrency}>

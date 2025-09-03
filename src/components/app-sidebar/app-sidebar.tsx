@@ -4,7 +4,13 @@ import * as React from 'react';
 import Link from 'next/link';
 
 // Icons
-import { ChartNoAxesCombined, Coins, GitCompare, Info } from 'lucide-react';
+import {
+  ChartNoAxesCombined,
+  Coins,
+  GitCompare,
+  HandCoins,
+  Info,
+} from 'lucide-react';
 
 // Components
 import { NavMenu } from '@/components/app-sidebar/nav-menu';
@@ -28,6 +34,11 @@ const nav_menu = [
     title: 'Dashboard',
     url: '/',
     icon: ChartNoAxesCombined,
+  },
+  {
+    title: 'Coins',
+    url: '/coins',
+    icon: HandCoins,
   },
   {
     title: 'Coin Analysis',

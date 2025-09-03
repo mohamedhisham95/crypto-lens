@@ -4,6 +4,12 @@ export const SEO = {
     description:
       'Explore the top 5 crypto gainers and losers, track global market stats including market cap and 24h volume — powered by CoinGecko API.',
   },
+  coins: {
+    title:
+      'Cryptocurrency List | Prices, Market Cap & Performance | Crypto Lens',
+    description:
+      'Browse a comprehensive list of cryptocurrencies with live prices, market capitalization, 24h volume, and performance metrics. Discover trending coins and filter by category to find investment opportunities — powered by CoinGecko API.',
+  },
   coin_analysis: {
     title: 'Coin Analysis | Price, Market Cap & OHLC Charts | Crypto Lens',
     description:

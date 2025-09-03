@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import NextTopLoader from 'nextjs-toploader';
 
 //
-import { queryClient } from '@/lib/query-config';
+import { queryClient } from '@/lib/react-query-config';
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
