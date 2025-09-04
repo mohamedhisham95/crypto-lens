@@ -61,7 +61,7 @@ displays price trends, OHLC charts, and other insights for traders and enthusias
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/crypto-lens.git
+git clone https://github.com/H-Mohamed-Hisham/crypto-lens.git
 cd crypto-lens
 ```
 
