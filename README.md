@@ -1,5 +1,7 @@
 # 📊 Crypto Lens — Stock & Crypto Analytics Dashboard
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit-green?style=for-the-badge&logo=vercel)](https://crypto-lens-h.vercel.app/)
+
 A **personal hobby project** exploring financial APIs and crypto market data.  
 Built using **Next.js**, **TypeScript**, **React Query**, **TailwindCSS**, **shadcn/ui**, **Recharts**, and **ECharts**.  
 The app fetches cryptocurrency market data from [CoinGecko API](https://www.coingecko.com/),  
@@ -11,6 +13,12 @@ displays price trends, OHLC charts, and other insights for traders and enthusias
 > - Data is **not real-time** — CoinGecko free plan enforces a **15-minute cache**.
 > - This project is **not financial advice**.
 > - It’s a **personal hobby project** exploring finance APIs and frontend optimizations.
+
+---
+
+## 🔗 Live Demo
+
+🚀 **Try it out here** → [https://crypto-lens-h.vercel.app/](https://crypto-lens-h.vercel.app/)
 
 ---
 
@@ -29,7 +37,11 @@ displays price trends, OHLC charts, and other insights for traders and enthusias
 
 ## 🖼️ Preview
 
-> _(Add a screenshot or GIF of your dashboard here)_
+![Crypto Lens - Dashboard](./public/screenshots/dashboard.png)
+
+![Crypto Lens - Coin Analysis](./public/screenshots/coin-analysis.png)
+
+![Crypto Lens - Coin Comparison](./public/screenshots/coin-comparison.png)
 
 ---
 
@@ -49,8 +61,8 @@ displays price trends, OHLC charts, and other insights for traders and enthusias
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/crypto-insights.git
-cd crypto-insights
+git clone https://github.com/your-username/crypto-lens.git
+cd crypto-lens
 ```
 
 ### 2. Install Dependencies
@@ -64,8 +76,8 @@ npm install
 Create a .env.local file:
 
 ```
-COINGECKO_BASE_URL=https://<base_url_from_coingecko>/api/v3
-COINGECKO_API_KEY=api_key_from_coingecko
+COINGECKO_BASE_URL=<base_url_from_coingecko>
+COINGECKO_API_KEY=<api_key_from_coingecko>
 ```
 
 ### 4. Run the Development Server
