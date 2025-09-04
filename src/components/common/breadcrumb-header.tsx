@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
 
 // UI
@@ -21,14 +21,14 @@ export function BreadCrumbHeader() {
       <Breadcrumb>
         <BreadcrumbList>
           {paths.map((path, index) => (
-            <React.Fragment key={index}>
+            <Fragment key={index}>
               <BreadcrumbItem>
                 <BreadcrumbLink className="capitalize" href={`/${path}`}>
                   {path === '' ? 'dashboard' : path}
                 </BreadcrumbLink>
               </BreadcrumbItem>
               {index !== paths.length - 1 && <BreadcrumbSeparator />}
-            </React.Fragment>
+            </Fragment>
           ))}
         </BreadcrumbList>
       </Breadcrumb>

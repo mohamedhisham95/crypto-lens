@@ -22,6 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { Badge } from '../ui/badge';
 
 type Props = {
   title: string;
@@ -44,6 +45,9 @@ export function TrendingCoins({ title, data = [], className = '' }: Props) {
               </TableHead>
               <TableHead className="text-muted-foreground font-semibold">
                 Name
+              </TableHead>
+              <TableHead className="text-muted-foreground font-semibold">
+                Symbol
               </TableHead>
               <TableHead className="text-muted-foreground font-semibold text-right">
                 Price
@@ -78,6 +82,11 @@ export function TrendingCoins({ title, data = [], className = '' }: Props) {
                       <span className="truncate">{item.name}</span>
                     </div>
                   </Link>
+                </TableCell>
+                <TableCell>
+                  <Badge variant="secondary" className="uppercase">
+                    {item?.symbol}
+                  </Badge>
                 </TableCell>
                 <TableCell className="text-right">
                   {formatCurrency({

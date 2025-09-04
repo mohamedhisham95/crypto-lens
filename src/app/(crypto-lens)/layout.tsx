@@ -7,7 +7,7 @@ import coin_gecko_powered_by_banner from '@/assets/coin_gecko_powered_by_banner.
 
 // Components
 import { AppSidebar } from '@/components/app-sidebar';
-import { ThemeModeToggle, BreadCrumbHeader } from '@/components/common';
+import { ThemeModeToggle, PageTitle } from '@/components/common';
 import { DisclaimerModal, DataNoticeBanner } from '@/components/disclaimer';
 
 // UI
@@ -41,7 +41,7 @@ export default function DashboardLayout({
             <div className="flex items-center gap-2 px-4">
               <SidebarTrigger className="-ml-1" />
               <Separator orientation="vertical" className="mr-2 h-4" />
-              <BreadCrumbHeader />
+              <PageTitle />
             </div>
             <ThemeModeToggle />
           </div>

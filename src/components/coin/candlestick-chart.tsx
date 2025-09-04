@@ -224,7 +224,8 @@ export const CandlestickChart = React.memo(function CandlestickChart({
       grid: [
         {
           top: 30,
-          left: '10%',
+          // left: '10%',
+          left: '13%',
           right: 10,
           height: '65%',
         },

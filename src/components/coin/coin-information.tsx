@@ -63,7 +63,7 @@ export const CoinInformation = React.memo(function CoinInformation({
 
               <div className="flex items-center gap-2">
                 <Badge variant="secondary">#{data?.rank}</Badge>
-                <Badge variant="outline" className="uppercase">
+                <Badge variant="secondary" className="uppercase">
                   {data?.symbol}
                 </Badge>
                 <Dialog>

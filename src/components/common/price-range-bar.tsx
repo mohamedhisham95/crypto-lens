@@ -35,8 +35,8 @@ export const PriceRangeBar = ({
   return (
     <div className="flex flex-col p-4 w-full bg-muted/50 text-primary-foreground rounded-lg shadow-lg">
       <div className="flex justify-between items-center mb-2">
-        <span className="text-xs font-medium text-destructive">24h Low</span>
-        <span className="text-xs font-medium text-primary">24h High</span>
+        <span className="text-xs font-medium text-destructive">24H Low</span>
+        <span className="text-xs font-medium text-primary">24H High</span>
       </div>
 
       {/* The main progress bar container */}

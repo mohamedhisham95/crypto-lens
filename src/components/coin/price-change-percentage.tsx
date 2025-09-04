@@ -99,7 +99,7 @@ export function PriceChangePercentage({ data }: Props) {
   return (
     <div className="grid grid-cols-3 gap-4">
       <div className="col-span-3 flex items-center justify-between bg-card border rounded-xl p-3">
-        <span className="leading-none font-semibold">Price Change & %</span>
+        <span className="leading-none font-semibold">Price Change</span>
 
         <Select value={currency} onValueChange={setCurrency}>
           <SelectTrigger className="w-[90px]">

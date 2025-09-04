@@ -281,7 +281,7 @@ export function CoinsTemplate() {
                       </Link>
                     </TableCell>
                     <TableCell>
-                      <Badge variant="outline" className="uppercase">
+                      <Badge variant="secondary" className="uppercase">
                         {coin?.symbol}
                       </Badge>
                     </TableCell>
