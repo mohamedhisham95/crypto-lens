@@ -13,6 +13,7 @@ displays price trends, OHLC charts, and other insights for traders and enthusias
 > - Data is **not real-time** — CoinGecko free plan enforces a **15-minute cache**.
 > - This project is **not financial advice**.
 > - It’s a **personal hobby project** exploring finance APIs and frontend optimizations.
+> - not for financial advice!
 
 ---
 
@@ -76,8 +77,8 @@ npm install
 Create a .env.local file:
 
 ```
-COINGECKO_BASE_URL=<base_url_from_coingecko>
-COINGECKO_API_KEY=<api_key_from_coingecko>
+COINGECKO_BASE_URL=base_url_from_coingecko
+COINGECKO_API_KEY=api_key_from_coingecko
 ```
 
 ### 4. Run the Development Server
@@ -89,4 +90,3 @@ npm run dev
 Your app will be running at http://localhost:3000
 
 Built with ❤️ using Next.js, React, Shadcn, Tailwind CSS, ECharts, Recharts, and CoinGecko API
-This is just a hobby project — not financial advice!
