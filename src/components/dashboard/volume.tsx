@@ -1,12 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 // Icons
 import { Info } from 'lucide-react';
 
 // Lib
 import { formatCurrency } from '@/lib/formatter';
+
+// Config
+import { refetch_interval } from '@/config/refetch-interval';
 
 // Components
 import { PriceCountUp, TooltipWrapper } from '@/components/common';
@@ -26,12 +29,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Skeleton } from '@/components/ui/skeleton';
 
 type Props = {
   totalVolume: Record<string, number>;
+  isFetching?: boolean;
 };
 
-export function Volume({ totalVolume }: Props) {
+export const Volume = React.memo(function Volume({
+  totalVolume,
+  isFetching = false,
+}: Props) {
   // Local State
   const [currency, setCurrency] = useState('usd');
 
@@ -39,40 +47,59 @@ export function Volume({ totalVolume }: Props) {
     <Card>
       <CardHeader>
         <CardDescription className="flex items-center gap-2 font-semibold">
-          24H Trading Volume
+          <span>24H Trading Volume</span>
+          <TooltipWrapper
+            side="bottom"
+            content={
+              <div className="flex items-center gap-1">
+                <span className="text-xs">Cache / Update Frequency:</span>
+                <span className="text-xs">
+                  {refetch_interval['global_data'] / (60 * 1000)} Minutes
+                </span>
+              </div>
+            }
+          >
+            <Info className="icon-sm stroke-muted-foreground" />
+          </TooltipWrapper>
         </CardDescription>
         <CardTitle>
-          <div className="flex items-center gap-4">
-            <PriceCountUp
-              value={totalVolume[currency]}
-              currency={currency.toUpperCase()}
-            />
-            <TooltipWrapper
-              side="bottom"
-              content={formatCurrency({
-                amount: totalVolume[currency],
-                compact: true,
-              })}
-            >
-              <Info className="icon-sm" />
-            </TooltipWrapper>
-          </div>
+          {isFetching ? (
+            <Skeleton className="h-5 w-28" />
+          ) : (
+            <div className="flex items-center gap-4">
+              <PriceCountUp
+                value={totalVolume[currency]}
+                currency={currency.toUpperCase()}
+              />
+              <TooltipWrapper
+                side="bottom"
+                content={formatCurrency({
+                  amount: totalVolume[currency],
+                  compact: true,
+                })}
+              >
+                <Info className="icon-sm stroke-muted-foreground" />
+              </TooltipWrapper>
+            </div>
+          )}
         </CardTitle>
         <CardAction>
-          <Select value={currency} onValueChange={setCurrency}>
-            <SelectTrigger className="w-[80px]" size="sm">
-              <SelectValue placeholder="Coin" />
-            </SelectTrigger>
-            <SelectContent>
-              {Object.keys(totalVolume).map((key) => (
-                <SelectItem key={key} value={key}>
-                  {key.toUpperCase()}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          {!isFetching && (
+            <Select value={currency} onValueChange={setCurrency}>
+              <SelectTrigger className="w-[80px]" size="sm">
+                <SelectValue placeholder="Coin" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.keys(totalVolume).map((key) => (
+                  <SelectItem key={key} value={key}>
+                    {key.toUpperCase()}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
         </CardAction>
       </CardHeader>
     </Card>
   );
-}
+});

@@ -5,15 +5,21 @@ import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 
+// Icons
+import { Info } from 'lucide-react';
+
 // Actions
 import { getCoinHistoricalChartData } from '@/actions/coin-analysis';
 
 // Types
 import { CoinHistoricalChartDataResponse } from '@/types/coin';
 
+// Config
+import { refetch_interval } from '@/config/refetch-interval';
+
 // Components
 import { AreaChartSkeleton } from '@/components/skeletons';
-import { AlertMessage } from '@/components/common';
+import { AlertMessage, TooltipWrapper } from '@/components/common';
 
 // UI
 import {
@@ -77,6 +83,7 @@ export const HistoricalChart = React.memo(function HistoricalChart({
         vs_currency: 'usd',
       }),
     enabled: !!coinId,
+    refetchInterval: refetch_interval['coin_historical_chart_data'],
   });
 
   // UseMemo
@@ -103,7 +110,26 @@ export const HistoricalChart = React.memo(function HistoricalChart({
   return (
     <Card className={`px-3 ${className}`}>
       <CardHeader className="px-0 flex flex-col gap-4 xl:flex-row xl:justify-between">
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>
+          <div className="flex items-center gap-2">
+            <span>{title}</span>
+            <TooltipWrapper
+              side="bottom"
+              content={
+                <div className="flex items-center gap-1">
+                  <span className="text-xs">Cache / Update Frequency:</span>
+                  <span className="text-xs">
+                    {refetch_interval['coin_historical_chart_data'] /
+                      (60 * 1000)}{' '}
+                    Minutes
+                  </span>
+                </div>
+              }
+            >
+              <Info className="icon-sm stroke-muted-foreground" />
+            </TooltipWrapper>
+          </div>
+        </CardTitle>
         <CardAction className="flex items-center gap-2">
           <Select value={chartType} onValueChange={setChartType}>
             <SelectTrigger className="w-[130px]" size="sm">

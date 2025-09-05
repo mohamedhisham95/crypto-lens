@@ -4,7 +4,7 @@ import CountUp from 'react-countup';
 import { formatCurrency } from '@/lib/formatter';
 
 export function PriceCountUp({
-  value,
+  value = 0,
   currency = 'USD',
 }: {
   value: number;

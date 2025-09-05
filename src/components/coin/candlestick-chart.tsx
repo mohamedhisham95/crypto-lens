@@ -6,6 +6,9 @@ import { useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { useTheme } from 'next-themes';
 
+// Icons
+import { Info } from 'lucide-react';
+
 // Actions
 import { getCoinOHLCChartData } from '@/actions/coin-analysis';
 
@@ -15,8 +18,11 @@ import { formatCurrency } from '@/lib/formatter';
 // Types
 import { CoinOHLCChartDataResponse } from '@/types/coin';
 
+// Config
+import { refetch_interval } from '@/config/refetch-interval';
+
 // Components
-import { AlertMessage } from '@/components/common';
+import { AlertMessage, TooltipWrapper } from '@/components/common';
 import { AreaChartSkeleton } from '@/components/skeletons';
 
 // UI
@@ -63,7 +69,7 @@ export const CandlestickChart = React.memo(function CandlestickChart({
         vs_currency: 'usd',
       }),
     enabled: !!coinId,
-    refetchInterval: 15 * 60 * 1000, // 15 minutes
+    refetchInterval: refetch_interval['coin_ohlc_chart_data'],
   });
 
   const upColor = '#00bc7d';
@@ -327,7 +333,25 @@ export const CandlestickChart = React.memo(function CandlestickChart({
   return (
     <Card className={`px-3 ${className}`}>
       <CardHeader className="px-0 flex flex-col gap-4 xl:flex-row xl:justify-between">
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>
+          <div className="flex items-center gap-2">
+            <span>{title}</span>
+            <TooltipWrapper
+              side="bottom"
+              content={
+                <div className="flex items-center gap-1">
+                  <span className="text-xs">Cache / Update Frequency:</span>
+                  <span className="text-xs">
+                    {refetch_interval['coin_ohlc_chart_data'] / (60 * 1000)}{' '}
+                    Minutes
+                  </span>
+                </div>
+              }
+            >
+              <Info className="icon-sm stroke-muted-foreground" />
+            </TooltipWrapper>
+          </div>
+        </CardTitle>
         <CardAction className="flex items-center gap-2">
           {/* {(option !== null || !data?.success) && ( */}
           <Select
