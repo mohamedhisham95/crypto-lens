@@ -9,7 +9,7 @@ type Props = {
 
 export function Percentage({
   value = 0,
-  decimals = 4,
+  decimals = 3,
   position = 'justify-end',
   text_size = 'text-xs',
 }: Props) {

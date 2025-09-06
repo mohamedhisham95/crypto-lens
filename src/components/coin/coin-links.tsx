@@ -17,14 +17,16 @@ import {
   TableHead,
   TableRow,
 } from '@/components/ui/table';
+import { Skeleton } from '@/components/ui/skeleton';
 
 type Props = {
   title: string;
   data: Links;
   className?: string;
+  isFetching?: boolean;
 };
 
-export function CoinLinks({ title, data, className }: Props) {
+export function CoinLinks({ title, data, className, isFetching }: Props) {
   return (
     <Card className={`px-3 ${className}`}>
       <CardHeader className="px-0">
@@ -35,8 +37,10 @@ export function CoinLinks({ title, data, className }: Props) {
           <TableBody>
             <TableRow className="bg-muted/50">
               <TableCell>Website</TableCell>
-              <TableCell className="text-right">
-                {data?.homepage[0] ? (
+              <TableCell className="flex justify-end">
+                {isFetching ? (
+                  <Skeleton className="w-14 h-4" />
+                ) : data?.homepage[0] ? (
                   <Link href={data?.homepage[0]} target="_blank">
                     <Badge variant="secondary">
                       {removeProtocol(data?.homepage[0])}
@@ -54,8 +58,10 @@ export function CoinLinks({ title, data, className }: Props) {
             </TableRow>
             <TableRow>
               <TableHead>Official Forum</TableHead>
-              <TableCell className="text-right">
-                {data?.official_forum_url?.[0] ? (
+              <TableCell className="flex justify-end">
+                {isFetching ? (
+                  <Skeleton className="w-14 h-4" />
+                ) : data?.official_forum_url?.[0] ? (
                   <Link href={data.official_forum_url[0]} target="_blank">
                     <Badge variant="secondary">
                       {removeProtocol(data.official_forum_url[0])}
@@ -73,8 +79,10 @@ export function CoinLinks({ title, data, className }: Props) {
             </TableRow>
             <TableRow className="bg-muted/50">
               <TableCell>Redit</TableCell>
-              <TableCell className="text-right">
-                {data?.subreddit_url ? (
+              <TableCell className="flex justify-end">
+                {isFetching ? (
+                  <Skeleton className="w-14 h-4" />
+                ) : data?.subreddit_url ? (
                   <Link href={data.subreddit_url} target="_blank">
                     <Badge variant="secondary">
                       {removeProtocol(data.subreddit_url)}

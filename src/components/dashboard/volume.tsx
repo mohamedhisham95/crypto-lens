@@ -29,17 +29,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Skeleton } from '@/components/ui/skeleton';
 
 type Props = {
   totalVolume: Record<string, number>;
-  isFetching?: boolean;
 };
 
-export const Volume = React.memo(function Volume({
-  totalVolume,
-  isFetching = false,
-}: Props) {
+export const Volume = React.memo(function Volume({ totalVolume }: Props) {
   // Local State
   const [currency, setCurrency] = useState('usd');
 
@@ -63,41 +58,35 @@ export const Volume = React.memo(function Volume({
           </TooltipWrapper>
         </CardDescription>
         <CardTitle>
-          {isFetching ? (
-            <Skeleton className="h-5 w-28" />
-          ) : (
-            <div className="flex items-center gap-4">
-              <PriceCountUp
-                value={totalVolume[currency]}
-                currency={currency.toUpperCase()}
-              />
-              <TooltipWrapper
-                side="bottom"
-                content={formatCurrency({
-                  amount: totalVolume[currency],
-                  compact: true,
-                })}
-              >
-                <Info className="icon-sm stroke-muted-foreground" />
-              </TooltipWrapper>
-            </div>
-          )}
+          <div className="flex items-center gap-4">
+            <PriceCountUp
+              value={totalVolume[currency]}
+              currency={currency.toUpperCase()}
+            />
+            <TooltipWrapper
+              side="bottom"
+              content={formatCurrency({
+                amount: totalVolume[currency],
+                compact: true,
+              })}
+            >
+              <Info className="icon-sm stroke-muted-foreground" />
+            </TooltipWrapper>
+          </div>
         </CardTitle>
         <CardAction>
-          {!isFetching && (
-            <Select value={currency} onValueChange={setCurrency}>
-              <SelectTrigger className="w-[80px]" size="sm">
-                <SelectValue placeholder="Coin" />
-              </SelectTrigger>
-              <SelectContent>
-                {Object.keys(totalVolume).map((key) => (
-                  <SelectItem key={key} value={key}>
-                    {key.toUpperCase()}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          )}
+          <Select value={currency} onValueChange={setCurrency}>
+            <SelectTrigger className="w-[80px]" size="sm">
+              <SelectValue placeholder="Coin" />
+            </SelectTrigger>
+            <SelectContent>
+              {Object.keys(totalVolume).map((key) => (
+                <SelectItem key={key} value={key}>
+                  {key.toUpperCase()}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </CardAction>
       </CardHeader>
     </Card>

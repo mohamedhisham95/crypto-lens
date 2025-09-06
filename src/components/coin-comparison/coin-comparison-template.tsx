@@ -30,7 +30,7 @@ export function CoinComparisonTemplate({ defaultCoin }: Props) {
   // Local State
   const [coinId, setCoinId] = useState(defaultCoin);
 
-  // Coin Search
+  // Coin Data
   const { data: coinData, isFetching } = useQuery<CoinDataResponse>({
     queryKey: ['coin_data', coinId],
     queryFn: () => getCoinData(coinId),

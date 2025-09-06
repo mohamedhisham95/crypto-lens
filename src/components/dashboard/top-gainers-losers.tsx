@@ -28,19 +28,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Skeleton } from '@/components/ui/skeleton';
 
 type Props = {
   title: string;
   data: CoinList[];
-  isFetching?: boolean;
 };
 
-export function TopGainersLosers({
-  title,
-  data = [],
-  isFetching = false,
-}: Props) {
+export function TopGainersLosers({ title, data = [] }: Props) {
   return (
     <Card className="px-0">
       <CardHeader>
@@ -83,80 +77,51 @@ export function TopGainersLosers({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {isFetching
-              ? Array.from({ length: 5 }).map((_, index) => (
-                  <TableRow
-                    key={`loading-${index}`}
-                    className="hover:bg-transparent border-b-0"
-                  >
-                    <TableCell>
-                      <Skeleton className="h-4 w-16" />
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex items-center gap-2">
-                        <Skeleton className="h-6 w-6 rounded-full" />
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex justify-end">
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex justify-end">
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))
-              : data
-              ? data.map((coin, index) => (
-                  <TableRow
-                    key={index}
-                    className={cn(index % 2 !== 0 && 'bg-muted/50')}
-                  >
-                    <TableCell className="text-muted-foreground">
-                      {coin.market_cap_rank}
-                    </TableCell>
-                    <TableCell>
-                      <Link href={`/coin/${coin.id}`}>
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <Image
-                            src={coin.image}
-                            width={24}
-                            height={24}
-                            alt={coin.name}
-                            className="w-6 h-6"
-                          />
-                          <span className="truncate">{coin.name}</span>
-                        </div>
-                      </Link>
-                    </TableCell>
-                    <TableCell>
-                      <TooltipWrapper
-                        side="bottom"
-                        content={formatCurrency({
-                          amount: coin.total_volume,
-                          compact: true,
-                        })}
-                      >
-                        <div className="flex justify-end cursor-pointer">
-                          {formatCurrency({
-                            amount: coin.total_volume,
-                          })}
-                        </div>
-                      </TooltipWrapper>
-                    </TableCell>
-                    <TableCell>
-                      <Percentage
-                        value={coin.price_change_percentage_24h}
-                        decimals={3}
+            {data.map((coin, index) => (
+              <TableRow
+                key={index}
+                className={cn(index % 2 !== 0 && 'bg-muted/50')}
+              >
+                <TableCell className="text-muted-foreground">
+                  {coin.market_cap_rank}
+                </TableCell>
+                <TableCell>
+                  <Link href={`/coin/${coin.id}`}>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <Image
+                        src={coin.image}
+                        width={24}
+                        height={24}
+                        alt={coin.name}
+                        className="w-6 h-6"
                       />
-                    </TableCell>
-                  </TableRow>
-                ))
-              : null}
+                      <span className="truncate">{coin.name}</span>
+                    </div>
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <TooltipWrapper
+                    side="bottom"
+                    content={formatCurrency({
+                      amount: coin.total_volume,
+                      compact: true,
+                    })}
+                  >
+                    <div className="flex justify-end cursor-pointer">
+                      {formatCurrency({
+                        amount: coin.total_volume,
+                      })}
+                    </div>
+                  </TooltipWrapper>
+                </TableCell>
+                <TableCell>
+                  <Percentage
+                    value={coin.price_change_percentage_24h}
+                    decimals={3}
+                  />
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </CardContent>
