@@ -35,7 +35,7 @@ export const CoinInformation = React.memo(function CoinInformation({
   isFetching,
 }: Props) {
   return (
-    <Card className="py-3">
+    <Card className="py-3 h-[88px]">
       <CardContent className="flex items-center justify-between px-3">
         {isFetching ? (
           <>

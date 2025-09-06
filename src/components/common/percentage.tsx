@@ -8,7 +8,7 @@ type Props = {
 };
 
 export function Percentage({
-  value,
+  value = 0,
   decimals = 4,
   position = 'justify-end',
   text_size = 'text-xs',

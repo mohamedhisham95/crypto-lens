@@ -74,7 +74,7 @@ export function CoinSearch({ handleSelectCoinCallback }: Props) {
   }, []);
 
   return (
-    <Card className="py-3 justify-center">
+    <Card className="py-3 justify-center h-14">
       <CardContent className="flex flex-col relative" ref={wrapperRef}>
         {/* Search Input */}
         <div className="relative w-full">

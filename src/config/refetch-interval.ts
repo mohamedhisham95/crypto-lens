@@ -6,4 +6,6 @@ export const refetch_interval = {
   trending_coins: calculateInterval(10),
   coin_historical_chart_data: calculateInterval(2),
   coin_ohlc_chart_data: calculateInterval(15),
+  coin_comparison: calculateInterval(15),
+  coin_analysis: calculateInterval(15),
 };

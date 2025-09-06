@@ -9,6 +9,9 @@ import { getCoinData } from '@/actions';
 // Types
 import type { CoinDataResponse, CoinInfo, CoinOverview } from '@/types/coin';
 
+// Config
+import { refetch_interval } from '@/config/refetch-interval';
+
 // Components
 import { AlertMessage } from '@/components/common';
 import { CoinSearch } from '@/components/coin-comparison';
@@ -31,7 +34,7 @@ export function CoinComparisonTemplate({ defaultCoin }: Props) {
   const { data: coinData, isFetching } = useQuery<CoinDataResponse>({
     queryKey: ['coin_data', coinId],
     queryFn: () => getCoinData(coinId),
-    refetchInterval: 15 * 60 * 1000, // Minutes
+    refetchInterval: refetch_interval['coin_comparison'],
   });
 
   // Handle Select Coin Callback
@@ -43,38 +46,36 @@ export function CoinComparisonTemplate({ defaultCoin }: Props) {
   );
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="grid grid-cols-1 gap-4">
-        <CoinSearch handleSelectCoinCallback={handleSelectCoinCallback} />
+    <div className="grid grid-cols-1 gap-4">
+      <CoinSearch handleSelectCoinCallback={handleSelectCoinCallback} />
 
-        {isFetching && !coinData ? (
-          <CoinInformation data={{} as CoinInfo} isFetching={true} />
-        ) : coinData && !coinData.success ? (
-          <AlertMessage message={coinData.message} />
-        ) : coinData ? (
-          <CoinInformation data={coinData.coin_info} isFetching={isFetching} />
-        ) : null}
+      {isFetching && !coinData ? (
+        <CoinInformation data={{} as CoinInfo} isFetching={true} />
+      ) : coinData && !coinData.success ? (
+        <AlertMessage className="h-[88px]" message={coinData.message} />
+      ) : coinData ? (
+        <CoinInformation data={coinData.coin_info} isFetching={isFetching} />
+      ) : null}
 
-        {isFetching && !coinData ? (
-          <Overview
-            title="Overview"
-            data={{} as CoinOverview}
-            isFetching={true}
-          />
-        ) : coinData && !coinData.success ? (
-          <AlertMessage message={coinData.message} />
-        ) : coinData ? (
-          <Overview
-            title="Overview"
-            data={coinData?.coin_overview}
-            isFetching={isFetching}
-          />
-        ) : null}
+      {isFetching && !coinData ? (
+        <Overview
+          title="Overview"
+          data={{} as CoinOverview}
+          isFetching={true}
+        />
+      ) : coinData && !coinData.success ? (
+        <AlertMessage className="h-[510px]" message={coinData.message} />
+      ) : coinData ? (
+        <Overview
+          title="Overview"
+          data={coinData?.coin_overview}
+          isFetching={isFetching}
+        />
+      ) : null}
 
-        <HistoricalChart title="Historical Data" coinId={coinId} />
+      <HistoricalChart title="Historical Data" coinId={coinId} />
 
-        <CandlestickChart title="Candlestick" coinId={coinId} />
-      </div>
+      <CandlestickChart title="Candlestick" coinId={coinId} />
     </div>
   );
 }

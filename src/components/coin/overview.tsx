@@ -89,7 +89,7 @@ export function Overview({ title, data, className, isFetching }: Props) {
   }, [data, currency, isFetching]);
 
   return (
-    <Card className={`px-3 ${className}`}>
+    <Card className={`px-3 h-[510px] ${className}`}>
       <CardHeader className="px-0">
         <CardTitle>{title}</CardTitle>
 
