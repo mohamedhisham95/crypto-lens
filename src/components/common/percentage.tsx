@@ -12,7 +12,7 @@ type Props = {
 
 export function Percentage({
   value = 0,
-  decimals = 3,
+  decimals = 2,
   position = 'justify-end',
   text_size = 'text-xs',
 }: Props) {
@@ -37,7 +37,7 @@ export function Percentage({
       {Number.isFinite(normalizedValue) ? (
         <>
           {normalizedValue > 0 ? '▲' : normalizedValue < 0 ? '▼' : ''}
-          <span>{normalizedValue.toFixed(decimals)}%</span>
+          <span>{normalizedValue}%</span>
         </>
       ) : (
         <span>-</span>

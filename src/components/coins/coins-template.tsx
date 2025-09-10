@@ -102,9 +102,10 @@ export function CoinsTemplate() {
         per_page: 20,
         page: Number(searchParams.get('page')) || 1,
         order,
-        price_change_percentage: encodeURIComponent(
-          ['1h', '24h', '7d'].join(',')
-        ),
+        // price_change_percentage: encodeURIComponent(
+        //   ['1h', '24h', '7d'].join(',')
+        // ),
+        price_change_percentage: ['1h', '24h', '7d'].join(','),
         precision: 2,
       }),
   });
@@ -215,7 +216,7 @@ export function CoinsTemplate() {
           </TableHeader>
           <TableBody>
             {isFetching
-              ? Array.from({ length: 5 }).map((_, index) => (
+              ? Array.from({ length: 20 }).map((_, index) => (
                   <TableRow
                     key={`loading-${index}`}
                     className="hover:bg-transparent border-b-0"
@@ -307,19 +308,16 @@ export function CoinsTemplate() {
                     <TableCell>
                       <Percentage
                         value={coin.price_change_percentage_1h_in_currency}
-                        decimals={3}
                       />
                     </TableCell>
                     <TableCell>
                       <Percentage
                         value={coin.price_change_percentage_24h_in_currency}
-                        decimals={3}
                       />
                     </TableCell>
                     <TableCell>
                       <Percentage
                         value={coin.price_change_percentage_7d_in_currency}
-                        decimals={3}
                       />
                     </TableCell>
                     <TableCell>
