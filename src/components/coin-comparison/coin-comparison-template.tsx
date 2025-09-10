@@ -3,11 +3,11 @@
 import React, { useCallback, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-// Actions
-import { getCoinData } from '@/actions';
-
 // Types
 import type { CoinDataResponse, CoinInfo, CoinOverview } from '@/types/coin';
+
+// Lib
+import { apiFetcher } from '@/lib/api-fetcher';
 
 // Config
 import { refetch_interval } from '@/config/refetch-interval';
@@ -33,7 +33,14 @@ export function CoinComparisonTemplate({ defaultCoin }: Props) {
   // Coin Data
   const { data: coinData, isFetching } = useQuery<CoinDataResponse>({
     queryKey: ['coin_data', coinId],
-    queryFn: () => getCoinData(coinId),
+    queryFn: () =>
+      apiFetcher(`/coin-analysis/${coinId}/coin-data`, {
+        localization: false,
+        tickers: false,
+        community_data: false,
+        developer_data: false,
+        sparkline: false,
+      }),
     refetchInterval: refetch_interval['coin_comparison'],
   });
 

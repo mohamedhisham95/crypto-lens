@@ -3,7 +3,7 @@ import { baseAPI } from '@/lib/base-api';
 
 // Interfaces
 import { BaseAPIError } from '@/types/api';
-import { CoinList } from '@/types/coin';
+import { CoinList } from '@/types/coins';
 import {
   TopGainersLosersResponse,
   TransformedGlobalData,

@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/formatter';
 
 // Types
-import { CoinList } from '@/types/coin';
+import { CoinList } from '@/types/coins';
 
 // Config
 import { refetch_interval } from '@/config/refetch-interval';

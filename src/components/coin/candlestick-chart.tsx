@@ -9,9 +9,6 @@ import { useTheme } from 'next-themes';
 // Icons
 import { Info } from 'lucide-react';
 
-// Actions
-import { getCoinOHLCChartData } from '@/actions/coin-analysis';
-
 // Lib
 import { formatCurrency } from '@/lib/formatter';
 
@@ -40,6 +37,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { apiFetcher } from '@/lib/api-fetcher';
 
 type Props = {
   title: string;
@@ -59,14 +57,15 @@ export const CandlestickChart = React.memo(function CandlestickChart({
   const { theme, systemTheme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
-  // Coin Historical Chart Data
+  // Coin OHLC Chart Data
   const { data, isFetching } = useQuery<CoinOHLCChartDataResponse>({
     queryKey: ['coin_ohlc_chart_data', days, coinId],
     queryFn: () =>
-      getCoinOHLCChartData({
+      apiFetcher(`/coin-analysis/${coinId}/ohlc-chart-data`, {
         coin_id: coinId,
         days,
         vs_currency: 'usd',
+        precision: 2,
       }),
     enabled: !!coinId,
     refetchInterval: refetch_interval['coin_ohlc_chart_data'],

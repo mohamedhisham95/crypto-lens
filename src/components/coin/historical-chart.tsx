@@ -8,8 +8,8 @@ import dayjs from 'dayjs';
 // Icons
 import { Info } from 'lucide-react';
 
-// Actions
-import { getCoinHistoricalChartData } from '@/actions/coin-analysis';
+// Lib
+import { apiFetcher } from '@/lib/api-fetcher';
 
 // Types
 import { CoinHistoricalChartDataResponse } from '@/types/coin';
@@ -76,11 +76,12 @@ export const HistoricalChart = React.memo(function HistoricalChart({
   const { data, isFetching } = useQuery<CoinHistoricalChartDataResponse>({
     queryKey: ['coin_historical_chart_data', days, interval, coinId],
     queryFn: () =>
-      getCoinHistoricalChartData({
+      apiFetcher(`/coin-analysis/${coinId}/historical-chart-data`, {
         coin_id: coinId,
         days,
         interval,
         vs_currency: 'usd',
+        precision: 2,
       }),
     enabled: !!coinId,
     refetchInterval: refetch_interval['coin_historical_chart_data'],

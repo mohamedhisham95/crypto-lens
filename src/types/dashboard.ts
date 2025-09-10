@@ -1,5 +1,6 @@
 // Type
-import { CoinList, CurrencyMap } from './coin';
+import { CurrencyMap } from './coin';
+import { CoinList } from './coins';
 
 // Top Gainers/Losers
 export type TopGainersLosersResponse =
