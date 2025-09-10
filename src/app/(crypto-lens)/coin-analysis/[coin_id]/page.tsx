@@ -14,7 +14,7 @@ import {
   CoinLinks,
   PriceChangePercentage,
   CandlestickChart,
-} from '@/components/coin';
+} from '@/components/coin-analysis';
 
 export const metadata = getMetadata('coin_analysis');
 

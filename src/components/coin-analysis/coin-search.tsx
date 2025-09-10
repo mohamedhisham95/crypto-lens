@@ -57,7 +57,7 @@ export function CoinSearch() {
   const handleSelectCoin = (coinId: string) => {
     setIsOpen(false);
     setQuery(''); // optional: clear input after navigation
-    router.push(`/coin/${encodeURIComponent(coinId)}`);
+    router.push(`/coin-analysis/${encodeURIComponent(coinId)}`);
   };
 
   // UseEffect: Close dropdown when clicking outside

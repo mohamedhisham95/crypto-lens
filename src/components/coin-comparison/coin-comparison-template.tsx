@@ -20,7 +20,7 @@ import {
   HistoricalChart,
   Overview,
   CandlestickChart,
-} from '@/components/coin';
+} from '@/components/coin-analysis';
 
 type Props = {
   defaultCoin: string;

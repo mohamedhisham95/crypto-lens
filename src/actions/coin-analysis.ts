@@ -13,7 +13,6 @@ export async function getCoinData(coin_id: string): Promise<CoinDataResponse> {
     const coin_data = await baseAPI<CoinData>(
       `/coins/${coin_id}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=false`,
       {
-        revalidate: 900,
         tags: ['coin_data'],
       }
     );
