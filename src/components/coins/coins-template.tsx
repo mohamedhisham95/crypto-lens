@@ -356,6 +356,7 @@ export function CoinsTemplate() {
         <div className="flex items-center gap-4">
           <Button
             size="icon"
+            className="cursor-pointer"
             disabled={page === 1}
             onClick={() => handlePageChange(1)}
           >
@@ -363,6 +364,7 @@ export function CoinsTemplate() {
           </Button>
           <Button
             size="icon"
+            className="cursor-pointer"
             disabled={page <= 1}
             onClick={() => handlePageChange(page - 1)}
           >
@@ -370,6 +372,7 @@ export function CoinsTemplate() {
           </Button>
           <Button
             size="icon"
+            className="cursor-pointer"
             disabled={page >= LIMIT}
             onClick={() => handlePageChange(page + 1)}
           >
@@ -377,6 +380,7 @@ export function CoinsTemplate() {
           </Button>
           <Button
             size="icon"
+            className="cursor-pointer"
             disabled={page === LIMIT}
             onClick={() => handlePageChange(LIMIT)}
           >
