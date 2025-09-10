@@ -7,14 +7,13 @@ const BASE =
 const HEADER_NAME = 'x-cg-demo-api-key';
 
 type FetchOpts = {
-  revalidate?: number;
   tags?: string[];
   query?: Record<string, string | number | boolean | undefined>; // ✅ Added query support
 };
 
 export async function baseAPI<T>(
   path: string,
-  { revalidate = 900, tags = [], query }: FetchOpts = {}
+  { tags = [], query }: FetchOpts = {}
 ): Promise<T> {
   // ✅ Build query string dynamically if passed
   const qs = query
@@ -32,7 +31,7 @@ export async function baseAPI<T>(
 
   const res = await fetch(`${BASE}${path}${qs}`, {
     headers,
-    next: { revalidate, tags },
+    next: { tags },
     cache: 'no-store',
   });
 

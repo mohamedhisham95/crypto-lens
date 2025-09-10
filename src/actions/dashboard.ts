@@ -19,7 +19,7 @@ export async function getTopGainersLosers(): Promise<TopGainersLosersResponse> {
   try {
     const markets = await baseAPI<CoinList[]>(
       `/coins/markets?vs_currency=${vs}&order=market_cap_desc&per_page=250&page=1&price_change_percentage=24h&sparkline=false`,
-      { revalidate: 1800, tags: ['top_gainers_losers'] }
+      { tags: ['top_gainers_losers'] }
     );
 
     // Optional volume floor similar to CoinGecko’s note (helps avoid illiquid moves)
@@ -57,7 +57,6 @@ export async function getTopGainersLosers(): Promise<TopGainersLosersResponse> {
 export async function getGlobalData(): Promise<GlobalDataResponse> {
   try {
     const global_data = await baseAPI<TransformedGlobalData>(`/global`, {
-      revalidate: 1800,
       tags: ['global_data'],
     });
 
@@ -77,7 +76,6 @@ export async function getTrendingCoins(): Promise<TrendingCoinsResponse> {
     const trending_coins = await baseAPI<TransformedTrendingCoins>(
       `/search/trending`,
       {
-        revalidate: 1800,
         tags: ['trending_coins'],
       }
     );
