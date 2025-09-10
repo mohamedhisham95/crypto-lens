@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 const title_data: Record<string, string> = {
   '/': 'Dashboard',
   '/coins': 'Coins',
-  '/coin': 'Coin Analysis',
+  '/coin-analysis': 'Coin Analysis',
   '/coin-comparison': 'Coin Comparison',
   '/disclaimer': 'Disclaimer',
 };
@@ -15,8 +15,8 @@ export function PageTitle() {
 
   function getPageTitle() {
     let title: string = '';
-    if (pathname.startsWith('/coin/')) {
-      title = title_data['/coin'];
+    if (pathname.startsWith('/coin-analysis/')) {
+      title = title_data['/coin-analysis'];
     } else {
       title = title_data[pathname] || 'Page Not Found';
     }
