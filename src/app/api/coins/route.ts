@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { baseAPI } from '@/lib/base-api';
 
 // Types
-import { TransformedCoinSearch } from '@/types/coin-search';
+import { CoinList } from '@/types/coins';
 
 export async function GET(req: NextRequest) {
   try {
@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
 
     const queryParams = Object.fromEntries(searchParams.entries());
 
-    const coin_search = await baseAPI<TransformedCoinSearch>(`/search`, {
+    const coin_search = await baseAPI<CoinList[]>(`/coins/markets`, {
       query: queryParams,
     });
 
