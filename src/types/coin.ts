@@ -109,13 +109,6 @@ export type CoinDataResponse =
 
 // Coin Historical Chart Data
 
-export interface CoinHistoricalChartDataPayload {
-  coin_id: string;
-  vs_currency: string;
-  days: number;
-  interval: string;
-}
-
 export interface CoinHistoricalChartData {
   prices: [number, number][];
   market_caps: [number, number][];
@@ -130,12 +123,6 @@ export type CoinHistoricalChartDataResponse =
   | { success: false; code: number; message: string };
 
 // Coin OHLC Chart Data
-
-export interface CoinOHLCChartDataPayload {
-  coin_id: string;
-  vs_currency: string;
-  days: number;
-}
 
 export type CoinOHLCChartData = [number, number, number, number, number];
 
