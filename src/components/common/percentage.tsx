@@ -1,25 +1,64 @@
+// 'use client';
+
+// // Lib
+// import { cn } from '@/lib/utils';
+
+// type Props = {
+//   value: number;
+//   position?: 'justify-start' | 'justify-end' | 'justify-center';
+//   text_size?: string;
+// };
+
+// export function Percentage({
+//   value = 0,
+//   position = 'justify-end',
+//   text_size = 'text-xs',
+// }: Props) {
+//   return (
+//     <div
+//       className={cn(
+//         'flex items-center gap-1',
+//         text_size,
+//         position,
+//         value > 0
+//           ? 'text-primary'
+//           : value < 0
+//           ? 'text-destructive'
+//           : 'text-primary-foreground'
+//       )}
+//     >
+//       {Number.isFinite(value) ? (
+//         <>
+//           {value > 0 ? '▲' : value < 0 ? '▼' : ''}
+//           <span>{value}%</span>
+//         </>
+//       ) : (
+//         <span>-</span>
+//       )}
+//     </div>
+//   );
+// }
+
 'use client';
 
-// Lib
 import { cn } from '@/lib/utils';
 
 type Props = {
   value: number;
-  decimals?: number;
   position?: 'justify-start' | 'justify-end' | 'justify-center';
   text_size?: string;
 };
 
 export function Percentage({
   value = 0,
-  decimals = 2,
   position = 'justify-end',
   text_size = 'text-xs',
 }: Props) {
-  // ✅ Normalize value to fixed decimals once, so server & client output match
-  const normalizedValue = Number.isFinite(value)
-    ? Number(value.toFixed(decimals))
-    : 0;
+  const formattedValue = Number.isFinite(value)
+    ? value >= 1 || value <= -1
+      ? value.toFixed(2) // Normal numbers → 2 decimals
+      : value.toFixed(4) // Small numbers → 4 decimals
+    : '-';
 
   return (
     <div
@@ -27,17 +66,17 @@ export function Percentage({
         'flex items-center gap-1',
         text_size,
         position,
-        normalizedValue > 0
+        value > 0
           ? 'text-primary'
-          : normalizedValue < 0
+          : value < 0
           ? 'text-destructive'
           : 'text-primary-foreground'
       )}
     >
-      {Number.isFinite(normalizedValue) ? (
+      {Number.isFinite(value) ? (
         <>
-          {normalizedValue > 0 ? '▲' : normalizedValue < 0 ? '▼' : ''}
-          <span>{normalizedValue}%</span>
+          {value > 0 ? '▲' : value < 0 ? '▼' : ''}
+          <span>{formattedValue}%</span>
         </>
       ) : (
         <span>-</span>

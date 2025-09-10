@@ -149,8 +149,7 @@ export function TopGainersLosers({
                     </TableCell>
                     <TableCell>
                       <Percentage
-                        value={coin.price_change_percentage_24h}
-                        decimals={3}
+                        value={coin.price_change_percentage_24h ?? Infinity}
                       />
                     </TableCell>
                   </TableRow>

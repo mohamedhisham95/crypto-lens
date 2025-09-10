@@ -135,8 +135,7 @@ export function PriceChangePercentage({ data, isFetching }: Props) {
                 </div>
                 {item.type === '%' ? (
                   <Percentage
-                    value={item.value}
-                    decimals={2}
+                    value={item.value ?? Infinity}
                     position="justify-center"
                     text_size="text-md"
                   />

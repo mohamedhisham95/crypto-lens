@@ -56,8 +56,7 @@ export const MarketCap = React.memo(function MarketCap({
             <>
               <span className="text-base">
                 <Percentage
-                  value={chgPercentage24h}
-                  decimals={2}
+                  value={chgPercentage24h ?? Infinity}
                   position="justify-start"
                 />
               </span>

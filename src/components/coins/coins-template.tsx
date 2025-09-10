@@ -307,17 +307,26 @@ export function CoinsTemplate() {
                     </TableCell>
                     <TableCell>
                       <Percentage
-                        value={coin.price_change_percentage_1h_in_currency}
+                        value={
+                          coin.price_change_percentage_1h_in_currency ??
+                          Infinity
+                        }
                       />
                     </TableCell>
                     <TableCell>
                       <Percentage
-                        value={coin.price_change_percentage_24h_in_currency}
+                        value={
+                          coin.price_change_percentage_24h_in_currency ??
+                          Infinity
+                        }
                       />
                     </TableCell>
                     <TableCell>
                       <Percentage
-                        value={coin.price_change_percentage_7d_in_currency}
+                        value={
+                          coin.price_change_percentage_7d_in_currency ??
+                          Infinity
+                        }
                       />
                     </TableCell>
                     <TableCell>

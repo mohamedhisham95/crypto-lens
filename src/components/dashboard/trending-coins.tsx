@@ -164,8 +164,10 @@ export function TrendingCoins({ title, initialData, className = '' }: Props) {
                     </TableCell>
                     <TableCell>
                       <Percentage
-                        value={item.data?.price_change_percentage_24h['usd']}
-                        decimals={3}
+                        value={
+                          item.data?.price_change_percentage_24h['usd'] ??
+                          Infinity
+                        }
                       />
                     </TableCell>
                   </TableRow>
