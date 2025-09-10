@@ -88,8 +88,6 @@ export const HistoricalChart = React.memo(function HistoricalChart({
       refetchInterval: refetch_interval['coin_historical_chart_data'],
     });
 
-  console.log('ddd :: ', data, isError, error);
-
   // UseMemo
   const chartData = useMemo(() => {
     if (!data?.success) {

@@ -12,6 +12,23 @@ import {
   TrendingCoinsResponse,
 } from '@/types/dashboard';
 
+export async function getGlobalData(): Promise<GlobalDataResponse> {
+  try {
+    const global_data = await baseAPI<TransformedGlobalData>(`/global`, {
+      tags: ['global_data'],
+    });
+
+    return { success: true, global_data: global_data?.data };
+  } catch (error: unknown) {
+    const err = error as BaseAPIError;
+    return {
+      success: false,
+      code: err?.status || 500,
+      message: err?.message || 'Something went wrong while fetching API usage.',
+    };
+  }
+}
+
 export async function getTopGainersLosers(): Promise<TopGainersLosersResponse> {
   const vs = 'usd';
   const limit = 5;
@@ -44,23 +61,6 @@ export async function getTopGainersLosers(): Promise<TopGainersLosersResponse> {
       .slice(0, limit);
 
     return { success: true, top_gainers, top_losers };
-  } catch (error: unknown) {
-    const err = error as BaseAPIError;
-    return {
-      success: false,
-      code: err?.status || 500,
-      message: err?.message || 'Something went wrong while fetching API usage.',
-    };
-  }
-}
-
-export async function getGlobalData(): Promise<GlobalDataResponse> {
-  try {
-    const global_data = await baseAPI<TransformedGlobalData>(`/global`, {
-      tags: ['global_data'],
-    });
-
-    return { success: true, global_data: global_data?.data };
   } catch (error: unknown) {
     const err = error as BaseAPIError;
     return {
