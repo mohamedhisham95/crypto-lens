@@ -8,8 +8,8 @@ import dayjs from 'dayjs';
 // Icons
 import { Info } from 'lucide-react';
 
-// Actions
-import { getCoinHistoricalChartData } from '@/actions/coin-analysis';
+// Lib
+import { apiFetcher } from '@/lib/api-fetcher';
 
 // Types
 import { CoinHistoricalChartDataResponse } from '@/types/coin';
@@ -73,18 +73,20 @@ export const HistoricalChart = React.memo(function HistoricalChart({
   const [chartType, setChartType] = useState('price');
 
   // Coin Historical Chart Data
-  const { data, isFetching } = useQuery<CoinHistoricalChartDataResponse>({
-    queryKey: ['coin_historical_chart_data', days, interval, coinId],
-    queryFn: () =>
-      getCoinHistoricalChartData({
-        coin_id: coinId,
-        days,
-        interval,
-        vs_currency: 'usd',
-      }),
-    enabled: !!coinId,
-    refetchInterval: refetch_interval['coin_historical_chart_data'],
-  });
+  const { data, isFetching, isError, error } =
+    useQuery<CoinHistoricalChartDataResponse>({
+      queryKey: ['coin_historical_chart_data', days, interval, coinId],
+      queryFn: () =>
+        apiFetcher(`/coin-analysis/${coinId}/historical-chart-data`, {
+          coin_id: coinId,
+          days,
+          interval,
+          vs_currency: 'usd',
+          precision: 2,
+        }),
+      enabled: !!coinId,
+      refetchInterval: refetch_interval['coin_historical_chart_data'],
+    });
 
   // UseMemo
   const chartData = useMemo(() => {
@@ -283,9 +285,9 @@ export const HistoricalChart = React.memo(function HistoricalChart({
               <ChartLegend content={<ChartLegendContent />} />
             </AreaChart>
           </ChartContainer>
-        ) : data && !data.success && !isFetching ? (
+        ) : isError && !isFetching ? (
           <div className="h-[400px]">
-            <AlertMessage message={data?.message} />
+            <AlertMessage message={error?.message} />
           </div>
         ) : null}
       </CardContent>

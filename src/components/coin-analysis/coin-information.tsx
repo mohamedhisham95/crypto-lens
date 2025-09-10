@@ -91,8 +91,7 @@ export const CoinInformation = React.memo(function CoinInformation({
 
               <div className="flex items-center gap-2">
                 <Percentage
-                  value={data?.chg_percentage_24h_in_usd}
-                  decimals={2}
+                  value={data?.chg_percentage_24h_in_usd ?? Infinity}
                   position="justify-start"
                 />
 

@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/formatter';
 
 // Types
-import { CoinList } from '@/types/coin';
+import { CoinList } from '@/types/coins';
 
 // Config
 import { refetch_interval } from '@/config/refetch-interval';
@@ -28,13 +28,19 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { Skeleton } from '../ui/skeleton';
 
 type Props = {
   title: string;
   data: CoinList[];
+  isFetching?: boolean;
 };
 
-export function TopGainersLosers({ title, data = [] }: Props) {
+export function TopGainersLosers({
+  title,
+  data = [],
+  isFetching = false,
+}: Props) {
   return (
     <Card className="px-0">
       <CardHeader>
@@ -77,51 +83,77 @@ export function TopGainersLosers({ title, data = [] }: Props) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data.map((coin, index) => (
-              <TableRow
-                key={index}
-                className={cn(index % 2 !== 0 && 'bg-muted/50')}
-              >
-                <TableCell className="text-muted-foreground">
-                  {coin.market_cap_rank}
-                </TableCell>
-                <TableCell>
-                  <Link href={`/coin/${coin.id}`}>
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <Image
-                        src={coin.image}
-                        width={24}
-                        height={24}
-                        alt={coin.name}
-                        className="w-6 h-6"
-                      />
-                      <span className="truncate">{coin.name}</span>
-                    </div>
-                  </Link>
-                </TableCell>
-                <TableCell>
-                  <TooltipWrapper
-                    side="bottom"
-                    content={formatCurrency({
-                      amount: coin.total_volume,
-                      compact: true,
-                    })}
+            {isFetching
+              ? Array.from({ length: 5 }).map((_, index) => (
+                  <TableRow
+                    key={`loading-${index}`}
+                    className="hover:bg-transparent border-b-0"
                   >
-                    <div className="flex justify-end cursor-pointer">
-                      {formatCurrency({
-                        amount: coin.total_volume,
-                      })}
-                    </div>
-                  </TooltipWrapper>
-                </TableCell>
-                <TableCell>
-                  <Percentage
-                    value={coin.price_change_percentage_24h}
-                    decimals={3}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
+                    <TableCell>
+                      <Skeleton className="h-4 w-40" />
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        <Skeleton className="h-6 w-6 rounded-full" />
+                        <Skeleton className="h-4 w-16" />
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex justify-end">
+                        <Skeleton className="h-4 w-16" />
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex justify-end">
+                        <Skeleton className="h-4 w-16" />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))
+              : data.map((coin, index) => (
+                  <TableRow
+                    key={index}
+                    className={cn(index % 2 !== 0 && 'bg-muted/50')}
+                  >
+                    <TableCell className="text-muted-foreground">
+                      {coin.market_cap_rank}
+                    </TableCell>
+                    <TableCell>
+                      <Link href={`/coin/${coin.id}`}>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <Image
+                            src={coin.image}
+                            width={24}
+                            height={24}
+                            alt={coin.name}
+                            className="w-6 h-6"
+                          />
+                          <span className="truncate">{coin.name}</span>
+                        </div>
+                      </Link>
+                    </TableCell>
+                    <TableCell>
+                      <TooltipWrapper
+                        side="bottom"
+                        content={formatCurrency({
+                          amount: coin.total_volume,
+                          compact: true,
+                        })}
+                      >
+                        <div className="flex justify-end cursor-pointer">
+                          {formatCurrency({
+                            amount: coin.total_volume,
+                          })}
+                        </div>
+                      </TooltipWrapper>
+                    </TableCell>
+                    <TableCell>
+                      <Percentage
+                        value={coin.price_change_percentage_24h ?? Infinity}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
           </TableBody>
         </Table>
       </CardContent>

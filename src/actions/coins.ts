@@ -3,7 +3,7 @@ import { baseAPI } from '@/lib/base-api';
 
 // Types
 import { BaseAPIError } from '@/types/api';
-import { CoinList } from '@/types/coin';
+import { CoinList } from '@/types/coins';
 import { CoinsPayload, CoinsResponse } from '@/types/coins';
 
 export async function getCoins({

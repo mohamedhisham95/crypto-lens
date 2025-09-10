@@ -42,7 +42,7 @@ const nav_menu = [
   },
   {
     title: 'Coin Analysis',
-    url: '/coin/bitcoin',
+    url: '/coin-analysis/bitcoin',
     icon: Coins,
   },
   {

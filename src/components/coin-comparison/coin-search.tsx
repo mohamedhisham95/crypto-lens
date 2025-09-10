@@ -11,10 +11,10 @@ import { Search, X } from 'lucide-react';
 import { useDebounce } from '@/hooks/use-debounce';
 
 // Types
-import { CoinSearchResponse } from '@/types/coin';
+import { CoinSearchResponse } from '@/types/coin-search';
 
-// Actions
-import { coinSearch } from '@/actions/coin-analysis';
+// Lib
+import { apiFetcher } from '@/lib/api-fetcher';
 
 // UI
 import { Input } from '@/components/ui/input';
@@ -41,7 +41,10 @@ export function CoinSearch({ handleSelectCoinCallback }: Props) {
   // Coin Search
   const { data: coinSearchData, isFetching } = useQuery<CoinSearchResponse>({
     queryKey: ['coin_search', debouncedQuery],
-    queryFn: () => coinSearch(debouncedQuery),
+    queryFn: () =>
+      apiFetcher(`/coin-search`, {
+        query: debouncedQuery,
+      }),
     enabled: debouncedQuery.length > 0,
   });
 

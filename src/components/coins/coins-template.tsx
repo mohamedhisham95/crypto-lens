@@ -14,12 +14,10 @@ import {
   ChevronsRight,
 } from 'lucide-react';
 
-// Actions
-import { getCoins, getSupportedCurrencies } from '@/actions';
-
 // Lib
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/formatter';
+import { apiFetcher } from '@/lib/api-fetcher';
 
 // Types
 import type { CoinsResponse } from '@/types/coins';
@@ -99,11 +97,16 @@ export function CoinsTemplate() {
   const { data, isFetching } = useQuery<CoinsResponse>({
     queryKey: ['coins', page, order, currency],
     queryFn: () =>
-      getCoins({
+      apiFetcher(`/coins`, {
         vs_currency: currency,
+        per_page: 20,
         page: Number(searchParams.get('page')) || 1,
         order,
-        price_change_percentage: ['1h', '24h', '7d'],
+        // price_change_percentage: encodeURIComponent(
+        //   ['1h', '24h', '7d'].join(',')
+        // ),
+        price_change_percentage: ['1h', '24h', '7d'].join(','),
+        precision: 2,
       }),
   });
 
@@ -113,7 +116,7 @@ export function CoinsTemplate() {
     isFetching: isSupportedCurrenciesFetching,
   } = useQuery<SupportedCurrenciesResponse>({
     queryKey: ['supported_currencies'],
-    queryFn: () => getSupportedCurrencies(),
+    queryFn: () => apiFetcher(`/currencies`),
   });
 
   // Handle Page Change
@@ -213,7 +216,7 @@ export function CoinsTemplate() {
           </TableHeader>
           <TableBody>
             {isFetching
-              ? Array.from({ length: 5 }).map((_, index) => (
+              ? Array.from({ length: 20 }).map((_, index) => (
                   <TableRow
                     key={`loading-${index}`}
                     className="hover:bg-transparent border-b-0"
@@ -304,20 +307,26 @@ export function CoinsTemplate() {
                     </TableCell>
                     <TableCell>
                       <Percentage
-                        value={coin.price_change_percentage_1h_in_currency}
-                        decimals={3}
+                        value={
+                          coin.price_change_percentage_1h_in_currency ??
+                          Infinity
+                        }
                       />
                     </TableCell>
                     <TableCell>
                       <Percentage
-                        value={coin.price_change_percentage_24h_in_currency}
-                        decimals={3}
+                        value={
+                          coin.price_change_percentage_24h_in_currency ??
+                          Infinity
+                        }
                       />
                     </TableCell>
                     <TableCell>
                       <Percentage
-                        value={coin.price_change_percentage_7d_in_currency}
-                        decimals={3}
+                        value={
+                          coin.price_change_percentage_7d_in_currency ??
+                          Infinity
+                        }
                       />
                     </TableCell>
                     <TableCell>
@@ -347,6 +356,7 @@ export function CoinsTemplate() {
         <div className="flex items-center gap-4">
           <Button
             size="icon"
+            className="cursor-pointer"
             disabled={page === 1}
             onClick={() => handlePageChange(1)}
           >
@@ -354,13 +364,16 @@ export function CoinsTemplate() {
           </Button>
           <Button
             size="icon"
+            className="cursor-pointer"
             disabled={page <= 1}
             onClick={() => handlePageChange(page - 1)}
           >
             <ChevronLeft />
           </Button>
+          <span className="text-sm">Page {page}</span>
           <Button
             size="icon"
+            className="cursor-pointer"
             disabled={page >= LIMIT}
             onClick={() => handlePageChange(page + 1)}
           >
@@ -368,6 +381,7 @@ export function CoinsTemplate() {
           </Button>
           <Button
             size="icon"
+            className="cursor-pointer"
             disabled={page === LIMIT}
             onClick={() => handlePageChange(LIMIT)}
           >

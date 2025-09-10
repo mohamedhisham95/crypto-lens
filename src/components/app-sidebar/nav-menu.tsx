@@ -37,7 +37,7 @@ export function NavMenu({
               asChild
               isActive={
                 item.title === 'Coin Analysis'
-                  ? pathname.includes('/coin/')
+                  ? pathname.includes('/coin-analysis/')
                   : item.url === pathname
               }
             >
