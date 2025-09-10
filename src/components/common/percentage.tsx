@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/lib/utils';
 
 type Props = {
@@ -31,7 +33,7 @@ export function Percentage({
       {typeof value === 'number' ? (
         <>
           {value > 0 ? '▲' : value < 0 ? '▼' : ''}
-          <span>{value.toFixed(decimals)}%</span>
+          <span>{parseFloat(value.toFixed(decimals))}%</span>
         </>
       ) : (
         <span>-</span>

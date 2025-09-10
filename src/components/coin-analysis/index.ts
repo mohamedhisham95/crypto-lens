@@ -5,3 +5,4 @@ export * from './historical-chart';
 export * from './coin-links';
 export * from './price-change-percentage';
 export * from './candlestick-chart';
+export * from './coin-analysis-template';
