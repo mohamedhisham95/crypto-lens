@@ -58,18 +58,19 @@ export const CandlestickChart = React.memo(function CandlestickChart({
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
   // Coin OHLC Chart Data
-  const { data, isFetching } = useQuery<CoinOHLCChartDataResponse>({
-    queryKey: ['coin_ohlc_chart_data', days, coinId],
-    queryFn: () =>
-      apiFetcher(`/coin-analysis/${coinId}/ohlc-chart-data`, {
-        coin_id: coinId,
-        days,
-        vs_currency: 'usd',
-        precision: 2,
-      }),
-    enabled: !!coinId,
-    refetchInterval: refetch_interval['coin_ohlc_chart_data'],
-  });
+  const { data, isFetching, error, isError } =
+    useQuery<CoinOHLCChartDataResponse>({
+      queryKey: ['coin_ohlc_chart_data', days, coinId],
+      queryFn: () =>
+        apiFetcher(`/coin-analysis/${coinId}/ohlc-chart-data`, {
+          coin_id: coinId,
+          days,
+          vs_currency: 'usd',
+          precision: 2,
+        }),
+      enabled: !!coinId,
+      refetchInterval: refetch_interval['coin_ohlc_chart_data'],
+    });
 
   const upColor = '#00bc7d';
   const downColor = '#f9245a';
@@ -380,8 +381,8 @@ export const CandlestickChart = React.memo(function CandlestickChart({
           </div>
         ) : data && data.success && !isFetching && option !== null ? (
           <ReactECharts option={option} style={{ height: '100%' }} />
-        ) : data && !data.success && !isFetching ? (
-          <AlertMessage message={data?.message} />
+        ) : isError && !isFetching ? (
+          <AlertMessage message={error?.message} />
         ) : null}
       </CardContent>
     </Card>

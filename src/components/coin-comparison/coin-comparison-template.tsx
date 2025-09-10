@@ -31,7 +31,12 @@ export function CoinComparisonTemplate({ defaultCoin }: Props) {
   const [coinId, setCoinId] = useState(defaultCoin);
 
   // Coin Data
-  const { data: coinData, isFetching } = useQuery<CoinDataResponse>({
+  const {
+    data: coinData,
+    isFetching,
+    error,
+    isError,
+  } = useQuery<CoinDataResponse>({
     queryKey: ['coin_data', coinId],
     queryFn: () =>
       apiFetcher(`/coin-analysis/${coinId}/coin-data`, {
@@ -56,32 +61,50 @@ export function CoinComparisonTemplate({ defaultCoin }: Props) {
     <div className="grid grid-cols-1 gap-4">
       <CoinSearch handleSelectCoinCallback={handleSelectCoinCallback} />
 
-      {isFetching && !coinData ? (
+      {/* Coin Information */}
+      {isFetching && !coinData && (
         <CoinInformation data={{} as CoinInfo} isFetching={true} />
-      ) : coinData && !coinData.success ? (
-        <AlertMessage className="h-[88px]" message={coinData.message} />
-      ) : coinData ? (
-        <CoinInformation data={coinData.coin_info} isFetching={isFetching} />
-      ) : null}
+      )}
 
-      {isFetching && !coinData ? (
+      {!isFetching && (isError || (coinData && !coinData.success)) && (
+        <AlertMessage
+          className="h-[88px]"
+          message={(error as Error)?.message || 'An error occurred.'}
+        />
+      )}
+
+      {!isFetching && coinData && coinData.success && (
+        <CoinInformation data={coinData.coin_info} isFetching={isFetching} />
+      )}
+
+      {/* Overview */}
+      {isFetching && !coinData && (
         <Overview
           title="Overview"
           data={{} as CoinOverview}
           isFetching={true}
         />
-      ) : coinData && !coinData.success ? (
-        <AlertMessage className="h-[510px]" message={coinData.message} />
-      ) : coinData ? (
+      )}
+
+      {!isFetching && (isError || (coinData && !coinData.success)) && (
+        <AlertMessage
+          className="h-[510px]"
+          message={(error as Error)?.message || 'An error occurred.'}
+        />
+      )}
+
+      {!isFetching && coinData && coinData.success && (
         <Overview
           title="Overview"
           data={coinData?.coin_overview}
           isFetching={isFetching}
         />
-      ) : null}
+      )}
 
+      {/* Historical Chart */}
       <HistoricalChart title="Historical Data" coinId={coinId} />
 
+      {/* Candlestick Chart */}
       <CandlestickChart title="Candlestick" coinId={coinId} />
     </div>
   );
