@@ -370,6 +370,7 @@ export function CoinsTemplate() {
           >
             <ChevronLeft />
           </Button>
+          <span className="text-sm">Page {page}</span>
           <Button
             size="icon"
             className="cursor-pointer"
