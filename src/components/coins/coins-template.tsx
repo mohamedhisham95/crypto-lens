@@ -14,12 +14,10 @@ import {
   ChevronsRight,
 } from 'lucide-react';
 
-// Actions
-import { getCoins, getSupportedCurrencies } from '@/actions';
-
 // Lib
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/formatter';
+import { apiFetcher } from '@/lib/api-fetcher';
 
 // Types
 import type { CoinsResponse } from '@/types/coins';
@@ -99,11 +97,15 @@ export function CoinsTemplate() {
   const { data, isFetching } = useQuery<CoinsResponse>({
     queryKey: ['coins', page, order, currency],
     queryFn: () =>
-      getCoins({
+      apiFetcher(`/coins`, {
         vs_currency: currency,
+        per_page: 20,
         page: Number(searchParams.get('page')) || 1,
         order,
-        price_change_percentage: ['1h', '24h', '7d'],
+        price_change_percentage: encodeURIComponent(
+          ['1h', '24h', '7d'].join(',')
+        ),
+        precision: 2,
       }),
   });
 
@@ -113,7 +115,7 @@ export function CoinsTemplate() {
     isFetching: isSupportedCurrenciesFetching,
   } = useQuery<SupportedCurrenciesResponse>({
     queryKey: ['supported_currencies'],
-    queryFn: () => getSupportedCurrencies(),
+    queryFn: () => apiFetcher(`/currencies`),
   });
 
   // Handle Page Change

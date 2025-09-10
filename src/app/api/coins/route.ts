@@ -12,13 +12,13 @@ export async function GET(req: NextRequest) {
 
     const queryParams = Object.fromEntries(searchParams.entries());
 
-    const coin_search = await baseAPI<CoinList[]>(`/coins/markets`, {
+    const coins = await baseAPI<CoinList[]>(`/coins/markets`, {
       query: queryParams,
     });
 
     return NextResponse.json({
       success: true,
-      coins: coin_search?.coins || [],
+      coins: coins || [],
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
