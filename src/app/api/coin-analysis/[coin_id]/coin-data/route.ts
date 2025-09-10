@@ -11,9 +11,9 @@ import { transformCoinData } from '@/transformer/coin-analysis';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { coin_id: string } }
-) {
-  const { coin_id } = await params;
+  context: { params: Promise<{ coin_id: string }> }
+): Promise<NextResponse> {
+  const { coin_id } = await context.params;
 
   try {
     // ✅ Get query params from client request
