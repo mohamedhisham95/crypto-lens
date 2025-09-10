@@ -13,6 +13,7 @@ import { AlertMessage } from '@/components/common';
 import {
   MarketCapAndVolume,
   TopGainersLosersTemplate,
+  TrendingCoins,
 } from '@/components/dashboard';
 
 export const metadata = getMetadata('dashboard');
@@ -37,6 +38,16 @@ export default async function DashboardPage() {
         <AlertMessage message={topGainersLosersData?.message} />
       ) : (
         <TopGainersLosersTemplate initialData={topGainersLosersData} />
+      )}
+
+      {!trendingCoinsData?.success ? (
+        <AlertMessage message={trendingCoinsData?.message} />
+      ) : (
+        <TrendingCoins
+          title="Trending Coins"
+          initialData={trendingCoinsData}
+          className="col-span-1 xl:col-span-2"
+        />
       )}
     </div>
   );
