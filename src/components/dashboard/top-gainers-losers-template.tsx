@@ -29,7 +29,15 @@ export function TopGainersLosersTemplate({ initialData }: Props) {
   } = useQuery<TopGainersLosersResponse>({
     initialData: initialData,
     queryKey: ['top_gainers_losers'],
-    queryFn: () => apiFetcher(`/dashboard/top-gainers-losers`),
+    queryFn: () =>
+      apiFetcher(`/dashboard/top-gainers-losers`, {
+        vs_currency: 'usd',
+        order: 'market_cap_desc',
+        per_page: '250',
+        page: '1',
+        price_change_percentage: '24h',
+        sparkline: false,
+      }),
     refetchInterval: refetch_interval['top_gainers_losers'],
   });
 

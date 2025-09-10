@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 // Lib
 import { baseAPI } from '@/lib/base-api';
@@ -6,10 +6,16 @@ import { baseAPI } from '@/lib/base-api';
 // Types
 import { CoinList } from '@/types/coins';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   const limit = 5;
   try {
-    const markets = await baseAPI<CoinList[]>(`/coins/markets`);
+    const searchParams = req.nextUrl.searchParams;
+
+    const queryParams = Object.fromEntries(searchParams.entries());
+
+    const markets = await baseAPI<CoinList[]>(`/coins/markets`, {
+      query: queryParams,
+    });
 
     // Optional volume floor similar to CoinGecko’s note (helps avoid illiquid moves)
     const filtered = markets.filter((r) => (r.total_volume ?? 0) >= 50000);
