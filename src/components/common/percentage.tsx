@@ -1,5 +1,6 @@
 'use client';
 
+// Lib
 import { cn } from '@/lib/utils';
 
 type Props = {
@@ -15,25 +16,28 @@ export function Percentage({
   position = 'justify-end',
   text_size = 'text-xs',
 }: Props) {
+  // ✅ Normalize value to fixed decimals once, so server & client output match
+  const normalizedValue = Number.isFinite(value)
+    ? Number(value.toFixed(decimals))
+    : 0;
+
   return (
     <div
       className={cn(
         'flex items-center gap-1',
         text_size,
         position,
-        typeof value === 'number'
-          ? value > 0
-            ? 'text-primary'
-            : value < 0
-            ? 'text-destructive'
-            : 'text-primary-foreground'
+        normalizedValue > 0
+          ? 'text-primary'
+          : normalizedValue < 0
+          ? 'text-destructive'
           : 'text-primary-foreground'
       )}
     >
-      {typeof value === 'number' ? (
+      {Number.isFinite(normalizedValue) ? (
         <>
-          {value > 0 ? '▲' : value < 0 ? '▼' : ''}
-          <span>{parseFloat(value.toFixed(decimals))}%</span>
+          {normalizedValue > 0 ? '▲' : normalizedValue < 0 ? '▼' : ''}
+          <span>{normalizedValue.toFixed(decimals)}%</span>
         </>
       ) : (
         <span>-</span>
