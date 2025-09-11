@@ -3,7 +3,7 @@ import { baseAPI } from '@/lib/base-api';
 
 // Types
 import { BaseAPIError } from '@/types/api';
-import { Exchange, ExchangeResponse } from '@/types/exchange';
+import { Exchange, ExchangeInfo, ExchangeResponse } from '@/types/exchange';
 
 export async function getExchangeData(
   exchange_id: string
@@ -13,9 +13,12 @@ export async function getExchangeData(
       tags: ['exchange'],
     });
 
+    const { tickers, ...rest } = exchange;
+
     return {
       success: true,
-      exchange: exchange || {},
+      exchange_info: rest as ExchangeInfo,
+      exchange_tickers: tickers || [],
     };
   } catch (error: unknown) {
     const err = error as BaseAPIError;

@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { baseAPI } from '@/lib/base-api';
 
 // Types
-import { Exchange } from '@/types/exchange';
+import { Exchange, ExchangeInfo } from '@/types/exchange';
 
 export async function GET(
   req: NextRequest,
@@ -21,9 +21,12 @@ export async function GET(
       query: queryParams,
     });
 
+    const { tickers, ...rest } = exchange;
+
     return NextResponse.json({
       success: true,
-      exchange: exchange || {},
+      exchange_info: rest as ExchangeInfo,
+      exchange_tickers: tickers || [],
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {

@@ -36,9 +36,31 @@ export interface Exchange {
   tickers: Ticker[];
 }
 
+export interface ExchangeInfo {
+  name: string;
+  year_established: number;
+  country: string | null;
+  description: string | null;
+  url: string;
+  image: string;
+  facebook_url: string | null;
+  reddit_url: string | null;
+  telegram_url: string | null;
+  slack_url: string | null;
+  other_url_1: string | null;
+  other_url_2: string | null;
+  twitter_handle: string | null;
+  trust_score: number;
+  trust_score_rank: number;
+  coins: number;
+  pairs: number;
+  trade_volume_24h_btc: number;
+}
+
 export type ExchangeResponse =
   | {
       success: true;
-      exchange: Exchange;
+      exchange_info: ExchangeInfo;
+      exchange_tickers: Ticker[];
     }
   | { success: false; code: number; message: string };

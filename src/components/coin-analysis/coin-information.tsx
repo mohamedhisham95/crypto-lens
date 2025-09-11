@@ -73,11 +73,7 @@ export const CoinInformation = React.memo(function CoinInformation({
                   <DialogContent className="max-h-48 lg:max-h-64 overflow-auto">
                     <DialogHeader>
                       <DialogTitle>{data?.name}</DialogTitle>
-                      <DialogDescription>
-                        {data?.description}
-                        {data?.description}
-                        {data?.description}
-                      </DialogDescription>
+                      <DialogDescription>{data?.description}</DialogDescription>
                     </DialogHeader>
                   </DialogContent>
                 </Dialog>
