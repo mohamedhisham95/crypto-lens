@@ -19,7 +19,7 @@ import { formatCurrency } from '@/lib/formatter';
 import { apiFetcher } from '@/lib/api-fetcher';
 
 // Types
-import { ExchangeList } from '@/types/exchange';
+import { ExchangesResponse } from '@/types/exchanges';
 
 // Components
 import { AlertMessage, TooltipWrapper } from '@/components/common';
@@ -48,19 +48,15 @@ export function ExchangesTemplate() {
   const page = Number(searchParams.get('page')) || 1;
 
   // Coins
-  const { data, isFetching, isError, error } = useQuery<{
-    exchanges: ExchangeList[];
-  }>({
+  const { data, isFetching, isError, error } = useQuery<ExchangesResponse>({
     queryKey: ['exchanges', page],
     queryFn: () =>
-      apiFetcher(`/exchange/list`, {
+      apiFetcher(`/exchanges`, {
         per_page: 20,
         page: Number(searchParams.get('page')) || 1,
       }),
     enabled: page >= 1 && page <= LIMIT,
   });
-
-  console.log('DATA :: ', data);
 
   // Handle Page Change
   const handlePageChange = (newPage: number) => {
@@ -122,15 +118,10 @@ export function ExchangesTemplate() {
                         <Skeleton className="h-4 w-16" />
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <div className="flex justify-end">
-                        <Skeleton className="h-4 w-16" />
-                      </div>
-                    </TableCell>
                   </TableRow>
                 ))
-              : data
-              ? data.exchanges?.map((exchange, index) => (
+              : data?.success
+              ? data?.exchanges?.map((exchange, index) => (
                   <TableRow
                     key={index}
                     className={cn(index % 2 !== 0 && 'bg-muted/50')}
@@ -153,7 +144,7 @@ export function ExchangesTemplate() {
                       </Link>
                     </TableCell>
                     <TableCell>
-                      <Badge variant="secondary" className="uppercase">
+                      <Badge variant="secondary" className="uppercase w-12">
                         {exchange?.trust_score}/10
                       </Badge>
                     </TableCell>

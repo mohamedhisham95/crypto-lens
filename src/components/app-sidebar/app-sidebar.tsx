@@ -51,6 +51,11 @@ const nav_menu = [
     icon: GitCompare,
   },
   {
+    title: 'Exchanges',
+    url: '/exchanges',
+    icon: HandCoins,
+  },
+  {
     title: 'Disclaimer',
     url: '/disclaimer',
     icon: Info,

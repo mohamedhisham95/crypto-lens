@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { baseAPI } from '@/lib/base-api';
 
 // Types
-import { ExchangeList } from '@/types/exchange';
+import { ExchangeList } from '@/types/exchanges';
 
 export async function GET(req: NextRequest) {
   try {

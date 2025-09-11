@@ -94,7 +94,7 @@ export function CoinsTemplate() {
   const [order, setOrder] = useState('market_cap_desc');
 
   // Coins
-  const { data, isFetching } = useQuery<CoinsResponse>({
+  const { data, isFetching, isError, error } = useQuery<CoinsResponse>({
     queryKey: ['coins', page, order, currency],
     queryFn: () =>
       apiFetcher(`/coins`, {
@@ -139,8 +139,8 @@ export function CoinsTemplate() {
   };
 
   // Error UI
-  if (data && !data.success) {
-    return <AlertMessage message={data.message} />;
+  if (isError) {
+    return <AlertMessage message={error.message} />;
   }
 
   return (
@@ -260,7 +260,7 @@ export function CoinsTemplate() {
                     </TableCell>
                   </TableRow>
                 ))
-              : data
+              : data?.success
               ? data.coins?.map((coin, index) => (
                   <TableRow
                     key={index}

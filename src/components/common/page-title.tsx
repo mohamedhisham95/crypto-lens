@@ -7,6 +7,8 @@ const title_data: Record<string, string> = {
   '/coins': 'Coins',
   '/coin-analysis': 'Coin Analysis',
   '/coin-comparison': 'Coin Comparison',
+  '/exchanges': 'Exchanges',
+  '/exchange': 'Exchange Detail',
   '/disclaimer': 'Disclaimer',
 };
 
@@ -17,6 +19,8 @@ export function PageTitle() {
     let title: string = '';
     if (pathname.startsWith('/coin-analysis/')) {
       title = title_data['/coin-analysis'];
+    } else if (pathname.startsWith('/exchange/')) {
+      title = title_data['/exchange'];
     } else {
       title = title_data[pathname] || 'Page Not Found';
     }
