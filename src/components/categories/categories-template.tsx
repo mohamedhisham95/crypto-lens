@@ -180,7 +180,7 @@ export function CategoriesTemplate() {
                 {category.top_3_coins_id.length > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <span className="text-muted-foreground">Top Coins:</span>
-                    <div className="flex -space-x-2 *:data-[slot=avatar]:bg-background *:data-[slot=avatar]:ring-amber-200">
+                    <div className="flex -space-x-2">
                       {category.top_3_coins.map((item, index) => (
                         <Link
                           key={index}
@@ -188,10 +188,11 @@ export function CategoriesTemplate() {
                           href={`/coin/${category.top_3_coins_id[index]}`}
                           prefetch={false}
                         >
-                          <Avatar>
+                          <Avatar className="ring-1 ring-card bg-card">
                             <AvatarImage
                               src={item}
                               alt={category.top_3_coins_id[index]}
+                              className="rounded-full object-cover"
                             />
                             <AvatarFallback>
                               {item.slice(0, 1).toUpperCase()}
