@@ -78,8 +78,6 @@ export function CategoriesTemplate() {
       }),
   });
 
-  console.log('data :: ', data);
-
   // Handle Order By
   const handleOrderBy = (orderBy: string) => {
     setOrder(orderBy);
@@ -182,7 +180,7 @@ export function CategoriesTemplate() {
                 {category.top_3_coins_id.length > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <span className="text-muted-foreground">Top Coins:</span>
-                    <div className="flex -space-x-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:ring-2">
+                    <div className="flex -space-x-2 *:data-[slot=avatar]:bg-background *:data-[slot=avatar]:ring-amber-200">
                       {category.top_3_coins.map((item, index) => (
                         <Link
                           key={index}
