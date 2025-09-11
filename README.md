@@ -77,6 +77,7 @@ npm install
 Create a .env.local file:
 
 ```
+NEXT_PUBLIC_APP_URL=your_app_base_url<http://localhost:3000>
 COINGECKO_BASE_URL=base_url_from_coingecko
 COINGECKO_API_KEY=api_key_from_coingecko
 ```
