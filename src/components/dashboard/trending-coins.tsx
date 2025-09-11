@@ -136,7 +136,7 @@ export function TrendingCoins({ title, initialData, className = '' }: Props) {
                       {item.market_cap_rank}
                     </TableCell>
                     <TableCell>
-                      <Link href={`/coin/${item.id}`}>
+                      <Link href={`/coin/${item.id}`} prefetch={false}>
                         <div className="flex items-center gap-2 flex-wrap">
                           <Image
                             src={item.large}

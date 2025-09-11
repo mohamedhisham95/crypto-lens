@@ -41,7 +41,16 @@ export function NavMenu({
                   : item.url === pathname
               }
             >
-              <Link href={item.url}>
+              <Link
+                href={item.url}
+                prefetch={
+                  ['Coins', 'Coin Analysis', 'Coin Comparison'].includes(
+                    item.title
+                  )
+                    ? false
+                    : true
+                }
+              >
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
               </Link>

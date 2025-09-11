@@ -119,7 +119,7 @@ export function TopGainersLosers({
                       {coin.market_cap_rank}
                     </TableCell>
                     <TableCell>
-                      <Link href={`/coin/${coin.id}`}>
+                      <Link href={`/coin/${coin.id}`} prefetch={false}>
                         <div className="flex items-center gap-2 flex-wrap">
                           <Image
                             src={coin.image}
