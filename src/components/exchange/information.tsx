@@ -30,7 +30,7 @@ type Props = {
   isFetching?: boolean;
 };
 
-export function ExchangeInformation({ data, isFetching }: Props) {
+export function Information({ data, isFetching }: Props) {
   return (
     <Card className="py-3">
       <CardContent className="flex items-center justify-between px-3">

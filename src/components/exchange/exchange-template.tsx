@@ -10,7 +10,7 @@ import { ExchangeInfo, ExchangeResponse } from '@/types/exchange';
 
 // Components
 import { AlertMessage } from '@/components/common';
-import { ExchangeInformation, ExchangeValues } from '@/components/exchange';
+import { Information, Values } from '@/components/exchange';
 
 type Props = {
   exchangeId: string;
@@ -34,7 +34,7 @@ export function ExchangeTemplate({ exchangeId, initialData }: Props) {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         {/* Exchange Information */}
         {isFetching && !exchangeData && (
-          <ExchangeInformation data={{} as ExchangeInfo} isFetching={true} />
+          <Information data={{} as ExchangeInfo} isFetching={true} />
         )}
 
         {!isFetching &&
@@ -49,7 +49,7 @@ export function ExchangeTemplate({ exchangeId, initialData }: Props) {
           )}
 
         {!isFetching && exchangeData && exchangeData.success && (
-          <ExchangeInformation
+          <Information
             data={exchangeData.exchange_info}
             isFetching={isFetching}
           />
@@ -57,7 +57,7 @@ export function ExchangeTemplate({ exchangeId, initialData }: Props) {
 
         {/* Exchange Values */}
         {isFetching && !exchangeData && (
-          <ExchangeValues data={{} as ExchangeInfo} isFetching={true} />
+          <Values data={{} as ExchangeInfo} isFetching={true} />
         )}
 
         {!isFetching &&
@@ -72,10 +72,7 @@ export function ExchangeTemplate({ exchangeId, initialData }: Props) {
           )}
 
         {!isFetching && exchangeData && exchangeData.success && (
-          <ExchangeValues
-            data={exchangeData.exchange_info}
-            isFetching={isFetching}
-          />
+          <Values data={exchangeData.exchange_info} isFetching={isFetching} />
         )}
 
         {/* Tickers */}

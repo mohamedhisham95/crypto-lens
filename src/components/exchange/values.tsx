@@ -14,7 +14,7 @@ type Props = {
   isFetching?: boolean;
 };
 
-export function ExchangeValues({ data, isFetching }: Props) {
+export function Values({ data, isFetching }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <Card className="py-3">
