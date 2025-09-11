@@ -1,4 +1,4 @@
 export * from './exchange-template';
-export * from './information';
-export * from './values';
-export * from './tickers';
+export * from './exchange-information';
+export * from './exchange-values';
+export * from './exchange-tickers';

@@ -8,9 +8,16 @@ import { apiFetcher } from '@/lib/api-fetcher';
 // Types
 import { ExchangeInfo, ExchangeResponse } from '@/types/exchange';
 
+// Config
+import { refetch_interval } from '@/config/refetch-interval';
+
 // Components
 import { AlertMessage } from '@/components/common';
-import { Information, Values } from '@/components/exchange';
+import {
+  ExchangeInformation,
+  ExchangeValues,
+  ExchangeTickers,
+} from '@/components/exchange';
 
 type Props = {
   exchangeId: string;
@@ -28,13 +35,14 @@ export function ExchangeTemplate({ exchangeId, initialData }: Props) {
     initialData: initialData,
     queryKey: ['exchange_data', exchangeId],
     queryFn: () => apiFetcher(`/exchange/${exchangeId}`),
+    refetchInterval: refetch_interval['exchange'],
   });
   return (
     <div className="flex flex-col gap-4">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         {/* Exchange Information */}
         {isFetching && !exchangeData && (
-          <Information data={{} as ExchangeInfo} isFetching={true} />
+          <ExchangeInformation data={{} as ExchangeInfo} isFetching={true} />
         )}
 
         {!isFetching &&
@@ -49,7 +57,7 @@ export function ExchangeTemplate({ exchangeId, initialData }: Props) {
           )}
 
         {!isFetching && exchangeData && exchangeData.success && (
-          <Information
+          <ExchangeInformation
             data={exchangeData.exchange_info}
             isFetching={isFetching}
           />
@@ -57,7 +65,7 @@ export function ExchangeTemplate({ exchangeId, initialData }: Props) {
 
         {/* Exchange Values */}
         {isFetching && !exchangeData && (
-          <Values data={{} as ExchangeInfo} isFetching={true} />
+          <ExchangeValues data={{} as ExchangeInfo} isFetching={true} />
         )}
 
         {!isFetching &&
@@ -72,10 +80,36 @@ export function ExchangeTemplate({ exchangeId, initialData }: Props) {
           )}
 
         {!isFetching && exchangeData && exchangeData.success && (
-          <Values data={exchangeData.exchange_info} isFetching={isFetching} />
+          <ExchangeValues
+            data={exchangeData.exchange_info}
+            isFetching={isFetching}
+          />
+        )}
+      </div>
+
+      <div className="grid grid-cols-1 gap-4">
+        {/* Exchange Tickers */}
+        {isFetching && !exchangeData && (
+          <ExchangeTickers data={[]} isFetching={true} />
         )}
 
-        {/* Tickers */}
+        {!isFetching &&
+          (isError || (exchangeData && !exchangeData.success)) && (
+            <AlertMessage
+              message={
+                !exchangeData?.success
+                  ? exchangeData?.message
+                  : (error as Error)?.message || 'An error occurred.'
+              }
+            />
+          )}
+
+        {!isFetching && exchangeData && exchangeData.success && (
+          <ExchangeTickers
+            data={exchangeData.exchange_tickers}
+            isFetching={isFetching}
+          />
+        )}
       </div>
     </div>
   );

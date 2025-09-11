@@ -8,4 +8,5 @@ export const refetch_interval = {
   coin_ohlc_chart_data: calculateInterval(15),
   coin_comparison: calculateInterval(15),
   coin_analysis: calculateInterval(15),
+  exchange: calculateInterval(15),
 };
