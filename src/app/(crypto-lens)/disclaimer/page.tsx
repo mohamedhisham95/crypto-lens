@@ -1,5 +1,8 @@
 import Link from 'next/link';
 
+// Icons
+import { TriangleAlert } from 'lucide-react';
+
 // Lib
 import { getMetadata } from '@/lib/metadata';
 
@@ -8,7 +11,10 @@ export const metadata = getMetadata('disclaimer');
 export default function DisclaimerPage() {
   return (
     <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <h1 className="text-3xl font-bold tracking-tight mb-6">Disclaimer</h1>
+      <div className="flex items-center gap-2 mb-6">
+        <TriangleAlert className="icon-md stroke-yellow-500" />
+        <h1 className="text-3xl font-bold tracking-tight">Disclaimer</h1>
+      </div>
 
       <div className="space-y-6 text-base text-muted-foreground leading-relaxed">
         <section>

@@ -42,9 +42,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import {
   Card,
   CardAction,
@@ -52,6 +49,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 const order_by_list = [
   {
@@ -94,7 +94,7 @@ export function CoinsTemplate() {
   const [order, setOrder] = useState('market_cap_desc');
 
   // Coins
-  const { data, isFetching } = useQuery<CoinsResponse>({
+  const { data, isFetching, isError, error } = useQuery<CoinsResponse>({
     queryKey: ['coins', page, order, currency],
     queryFn: () =>
       apiFetcher(`/coins`, {
@@ -139,8 +139,8 @@ export function CoinsTemplate() {
   };
 
   // Error UI
-  if (data && !data.success) {
-    return <AlertMessage message={data.message} />;
+  if (isError) {
+    return <AlertMessage message={error.message} />;
   }
 
   return (
@@ -260,7 +260,7 @@ export function CoinsTemplate() {
                     </TableCell>
                   </TableRow>
                 ))
-              : data
+              : data?.success
               ? data.coins?.map((coin, index) => (
                   <TableRow
                     key={index}
@@ -270,7 +270,7 @@ export function CoinsTemplate() {
                       {coin.market_cap_rank}
                     </TableCell>
                     <TableCell>
-                      <Link href={`/coin/${coin.id}`} prefetch={false}>
+                      <Link href={`/coin-analysis/${coin.id}`} prefetch={false}>
                         <div className="flex items-center gap-2 flex-wrap">
                           <Image
                             src={coin.image}

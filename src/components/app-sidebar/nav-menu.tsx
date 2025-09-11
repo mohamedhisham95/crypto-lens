@@ -2,7 +2,15 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 // Icons
-import { type LucideIcon } from 'lucide-react';
+import {
+  ArrowRightLeft,
+  ChartNoAxesCombined,
+  Coins,
+  GitCompare,
+  HandCoins,
+  Info,
+  Layers,
+} from 'lucide-react';
 
 // Ui
 import {
@@ -10,28 +18,55 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from '@/components/ui/sidebar';
 
-export function NavMenu({
-  items,
-}: {
-  items: {
-    title: string;
-    url: string;
-    icon?: LucideIcon;
-    isActive?: boolean;
-    items?: {
-      title: string;
-      url: string;
-    }[];
-  }[];
-}) {
+const nav_menu = [
+  {
+    title: 'Dashboard',
+    url: '/',
+    icon: ChartNoAxesCombined,
+  },
+  {
+    title: 'Coins',
+    url: '/coins',
+    icon: HandCoins,
+  },
+  {
+    title: 'Coin Analysis',
+    url: '/coin-analysis/bitcoin',
+    icon: Coins,
+  },
+  {
+    title: 'Coin Comparison',
+    url: '/coin-comparison',
+    icon: GitCompare,
+  },
+  {
+    title: 'Exchanges',
+    url: '/exchanges',
+    icon: ArrowRightLeft,
+  },
+  {
+    title: 'Categories',
+    url: '/categories',
+    icon: Layers,
+  },
+  {
+    title: 'Disclaimer',
+    url: '/disclaimer',
+    icon: Info,
+  },
+];
+
+export function NavMenu() {
   const pathname = usePathname();
+  const { setOpenMobile } = useSidebar();
 
   return (
     <SidebarGroup>
       <SidebarMenu>
-        {items.map((item) => (
+        {nav_menu.map((item) => (
           <SidebarMenuItem key={item.title}>
             <SidebarMenuButton
               asChild
@@ -43,10 +78,14 @@ export function NavMenu({
             >
               <Link
                 href={item.url}
+                onClick={() => setOpenMobile(false)}
                 prefetch={
-                  ['Coins', 'Coin Analysis', 'Coin Comparison'].includes(
-                    item.title
-                  )
+                  [
+                    'Coins',
+                    'Coin Analysis',
+                    'Coin Comparison',
+                    'Exchanges',
+                  ].includes(item.title)
                     ? false
                     : true
                 }

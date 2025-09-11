@@ -4,13 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 
 // Icons
-import {
-  ChartNoAxesCombined,
-  Coins,
-  GitCompare,
-  HandCoins,
-  Info,
-} from 'lucide-react';
+import { Coins } from 'lucide-react';
 
 // Components
 import { NavMenu } from '@/components/app-sidebar/nav-menu';
@@ -27,35 +21,6 @@ import {
   SidebarRail,
   SidebarMenuButton,
 } from '@/components/ui/sidebar';
-
-// Navigation menu
-const nav_menu = [
-  {
-    title: 'Dashboard',
-    url: '/',
-    icon: ChartNoAxesCombined,
-  },
-  {
-    title: 'Coins',
-    url: '/coins',
-    icon: HandCoins,
-  },
-  {
-    title: 'Coin Analysis',
-    url: '/coin-analysis/bitcoin',
-    icon: Coins,
-  },
-  {
-    title: 'Coin Comparison',
-    url: '/coin-comparison',
-    icon: GitCompare,
-  },
-  {
-    title: 'Disclaimer',
-    url: '/disclaimer',
-    icon: Info,
-  },
-];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -86,7 +51,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMenu items={nav_menu} />
+        <NavMenu />
       </SidebarContent>
       <SidebarFooter>
         <Powered />
