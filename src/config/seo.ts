@@ -26,4 +26,10 @@ export const SEO = {
     description:
       'This project is for educational purposes only. Data is fetched from the free CoinGecko API and may not be real-time.',
   },
+  exchanges: {
+    title:
+      'Crypto Exchanges | Trading Volume, Markets & Rankings | Crypto Lens',
+    description:
+      'Discover top cryptocurrency exchanges with live trading volumes, market rankings, number of listed coins, and supported trading pairs. Track exchange performance and compare platforms — powered by CoinGecko API.',
+  },
 };

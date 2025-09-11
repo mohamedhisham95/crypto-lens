@@ -1,10 +1,3 @@
-export interface CoinsPayload {
-  vs_currency: string;
-  order: string;
-  page: number;
-  price_change_percentage: string[];
-}
-
 export interface CoinList {
   id: string;
   symbol: string;
