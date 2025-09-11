@@ -18,6 +18,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from '@/components/ui/sidebar';
 
 const nav_menu = [
@@ -60,6 +61,7 @@ const nav_menu = [
 
 export function NavMenu() {
   const pathname = usePathname();
+  const { setOpenMobile } = useSidebar();
 
   return (
     <SidebarGroup>
@@ -76,6 +78,7 @@ export function NavMenu() {
             >
               <Link
                 href={item.url}
+                onClick={() => setOpenMobile(false)}
                 prefetch={
                   [
                     'Coins',
