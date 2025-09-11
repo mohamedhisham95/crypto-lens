@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 
 // Icons
 import {
+  ArrowRightLeft,
   ChartNoAxesCombined,
   Coins,
   GitCompare,
@@ -42,7 +43,7 @@ const nav_menu = [
   {
     title: 'Exchanges',
     url: '/exchanges',
-    icon: HandCoins,
+    icon: ArrowRightLeft,
   },
   {
     title: 'Disclaimer',
