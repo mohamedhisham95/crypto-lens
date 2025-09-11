@@ -19,7 +19,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -70,11 +69,14 @@ export const CoinInformation = React.memo(function CoinInformation({
                   <DialogTrigger asChild>
                     <Info className="icon-sm stroke-muted-foreground" />
                   </DialogTrigger>
-                  <DialogContent className="max-h-48 lg:max-h-64 overflow-auto">
+                  <DialogContent className="max-h-60 lg:max-h-96 flex flex-col">
                     <DialogHeader>
                       <DialogTitle>{data?.name}</DialogTitle>
-                      <DialogDescription>{data?.description}</DialogDescription>
                     </DialogHeader>
+
+                    <div className="flex-1 overflow-y-auto text-muted-foreground leading-relaxed">
+                      {data?.description}
+                    </div>
                   </DialogContent>
                 </Dialog>
               </div>

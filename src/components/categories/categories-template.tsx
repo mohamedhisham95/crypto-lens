@@ -29,7 +29,6 @@ import {
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -124,13 +123,14 @@ export function CategoriesTemplate() {
                       <DialogTrigger asChild>
                         <Info className="icon-sm stroke-muted-foreground" />
                       </DialogTrigger>
-                      <DialogContent className="max-h-48 lg:max-h-64 overflow-auto">
+                      <DialogContent className="max-h-60 lg:max-h-96 flex flex-col">
                         <DialogHeader>
                           <DialogTitle>{category.name}</DialogTitle>
-                          <DialogDescription>
-                            {category.content}
-                          </DialogDescription>
                         </DialogHeader>
+
+                        <div className="flex-1 overflow-y-auto text-muted-foreground leading-relaxed">
+                          {category.content}
+                        </div>
                       </DialogContent>
                     </Dialog>
                   )}
