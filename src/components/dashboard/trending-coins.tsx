@@ -137,7 +137,7 @@ export function TrendingCoins({ title, initialData, className = '' }: Props) {
                     </TableCell>
                     <TableCell>
                       <Link
-                        href={`/coin/${item.id}`}
+                        href={`/coin-analysis/${item.id}`}
                         target="_blank"
                         prefetch={false}
                       >

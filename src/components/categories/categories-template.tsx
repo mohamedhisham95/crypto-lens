@@ -185,7 +185,7 @@ export function CategoriesTemplate() {
                         <Link
                           key={index}
                           target="_blank"
-                          href={`/coin/${category.top_3_coins_id[index]}`}
+                          href={`/coin-analysis/${category.top_3_coins_id[index]}`}
                           prefetch={false}
                         >
                           <Avatar className="ring-1 ring-card bg-card">

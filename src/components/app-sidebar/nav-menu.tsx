@@ -9,6 +9,7 @@ import {
   GitCompare,
   HandCoins,
   Info,
+  Layers,
 } from 'lucide-react';
 
 // Ui
@@ -44,6 +45,11 @@ const nav_menu = [
     title: 'Exchanges',
     url: '/exchanges',
     icon: ArrowRightLeft,
+  },
+  {
+    title: 'Categories',
+    url: '/categories',
+    icon: Layers,
   },
   {
     title: 'Disclaimer',

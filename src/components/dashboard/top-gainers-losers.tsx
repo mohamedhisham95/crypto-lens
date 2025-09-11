@@ -120,7 +120,7 @@ export function TopGainersLosers({
                     </TableCell>
                     <TableCell>
                       <Link
-                        href={`/coin/${coin.id}`}
+                        href={`/coin-analysis/${coin.id}`}
                         target="_blank"
                         prefetch={false}
                       >

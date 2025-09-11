@@ -9,6 +9,7 @@ const title_data: Record<string, string> = {
   '/coin-comparison': 'Coin Comparison',
   '/exchanges': 'Exchanges',
   '/exchange': 'Exchange Detail',
+  '/categories': 'Categories',
   '/disclaimer': 'Disclaimer',
 };
 
