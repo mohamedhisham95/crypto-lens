@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+
+// Icons
+import { TriangleAlert } from 'lucide-react';
 
 // UI
 import {
@@ -16,9 +18,6 @@ import { Button } from '@/components/ui/button';
 const LOCAL_STORAGE_KEY = 'disclaimer_accepted';
 
 export function DisclaimerModal() {
-  // Router
-  const router = useRouter();
-
   // Local State
   const [open, setOpen] = useState(false);
 
@@ -30,12 +29,6 @@ export function DisclaimerModal() {
     }
   }, []);
 
-  const handleAcceptAndGoToDisclaimerPage = () => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
-    setOpen(false);
-    router.push('/disclaimer');
-  };
-
   const handleAccept = () => {
     localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
     setOpen(false);
@@ -44,58 +37,104 @@ export function DisclaimerModal() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
-        className="max-w-lg"
-        onInteractOutside={(e) => {
-          e.preventDefault();
-        }}
+        className="max-w-lg h-96 flex flex-col"
+        onInteractOutside={(e) => e.preventDefault()}
         showCloseButton={false}
       >
+        {/* Fixed Header */}
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">
-            Disclaimer
+          <DialogTitle className="flex items-center gap-2">
+            <TriangleAlert className="icon-md stroke-yellow-500" />
+            <span className="text-xl font-semibold">Disclaimer</span>
           </DialogTitle>
         </DialogHeader>
-        <div className="space-y-4 text-sm text-muted-foreground">
-          <p>
-            This website is a <strong>personal hobby project</strong> built for
-            learning and exploring financial APIs.
-          </p>
-          <ul className="list-disc list-inside space-y-1">
-            <li>
-              All cryptocurrency data is fetched from{' '}
+
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto space-y-6 text-base text-muted-foreground leading-relaxed pr-2">
+          <section>
+            <p>
+              This website is a <strong>personal hobby project</strong> built
+              for{' '}
+              <span className="font-medium">
+                learning, experimentation, and exploring financial APIs
+              </span>
+              . It is not affiliated with any financial institution, exchange,
+              or trading platform.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold mb-2">Data Source</h2>
+            <p>
+              All cryptocurrency prices, charts, and market data are fetched
+              from{' '}
               <a
                 href="https://www.coingecko.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline"
+                className="underline font-medium"
               >
                 CoinGecko
               </a>
-              .
-            </li>
-            <li>
-              Prices and market information{' '}
-              <strong>may not be real-time</strong> due to free API limits.
-            </li>
-            <li>
-              The information provided is{' '}
-              <strong>for educational purposes only</strong> and{' '}
-              <strong>is not financial advice</strong>.
-            </li>
-            <li>
-              Please do your own research before making any investment
-              decisions.
-            </li>
-          </ul>
+              . While we strive to keep the information up-to-date, we rely
+              entirely on third-party data providers, and we cannot guarantee
+              the accuracy or completeness of the data.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold mb-2">
+              Real-Time Data Disclaimer
+            </h2>
+            <p>
+              Please note that due to API limitations, the data shown on this
+              site <strong>may not always be in real-time</strong>. Delays, rate
+              limits, and temporary outages can occur, which may result in
+              slightly outdated market information.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold mb-2">Not Financial Advice</h2>
+            <p>
+              The content provided on this site is{' '}
+              <strong>for informational and educational purposes only</strong>.
+              It does not constitute financial advice, investment
+              recommendations, or trading strategies. Please consult with a
+              qualified financial advisor before making any investment or
+              trading decisions.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold mb-2">Liability</h2>
+            <p>
+              Under no circumstances shall the creator of this website be held
+              responsible for any losses, damages, or decisions made based on
+              the information presented here.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold mb-2">Acknowledgment</h2>
+            <p>
+              By using this website, you acknowledge and agree to the terms of
+              this disclaimer.
+            </p>
+          </section>
+
+          <p className="mt-10 text-xs text-muted-foreground">
+            Last updated:{' '}
+            {new Date().toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </p>
         </div>
+
+        {/* Fixed Footer */}
         <DialogFooter className="flex justify-between">
-          <Button
-            variant="secondary"
-            className="font-medium"
-            onClick={handleAcceptAndGoToDisclaimerPage}
-          >
-            I Understand & Go to Disclaimer Page
-          </Button>
           <Button onClick={handleAccept} className="font-medium">
             I Understand
           </Button>
