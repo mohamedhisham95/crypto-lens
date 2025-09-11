@@ -122,7 +122,11 @@ export function ExchangeTickers({ data, isFetching = false }: Props) {
                     className={cn(index % 2 !== 0 && 'bg-muted/50')}
                   >
                     <TableCell>
-                      <Link href={ticker.trade_url} prefetch={false}>
+                      <Link
+                        href={ticker.trade_url}
+                        target="_blank"
+                        prefetch={false}
+                      >
                         <div className="flex items-center gap-2 flex-wrap">
                           <SquareArrowOutUpRight className="icon-md stroke-muted-foreground" />
                           <span>
