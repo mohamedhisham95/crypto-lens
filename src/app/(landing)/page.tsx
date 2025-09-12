@@ -43,8 +43,11 @@ export default function LandingPage() {
           viewport={{ once: false }}
           className="text-lg text-gray-300 max-w-xl"
         >
-          A hobby project to explore crypto market data with CoinGecko API.
-          Track coins, exchanges, categories, and more — beautifully visualized.
+          Your lens into the crypto market.
+          <br />
+          Track coins, exchanges, and categories with ease.
+          <br />
+          Beautiful charts, clear insights, seamless experience.
         </motion.p>
 
         <motion.div
@@ -123,7 +126,7 @@ export default function LandingPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: false }}
-          className="text-3xl font-semibold mb-6"
+          className="text-2xl xl:text-3xl font-semibold mb-6"
         >
           Built With
         </motion.h2>
@@ -147,6 +150,11 @@ export default function LandingPage() {
             </TooltipWrapper>
           ))}
         </motion.div>
+      </section>
+
+      {/* Footer */}
+      <section className="flex flex-col items-center justify-center text-center text-xs text-muted-foreground py-4">
+        Data from CoinGecko free API. Not financial advice.
       </section>
     </main>
   );
