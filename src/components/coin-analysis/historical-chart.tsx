@@ -3,13 +3,13 @@
 import React, { useMemo, useState } from 'react';
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { useQuery } from '@tanstack/react-query';
-import dayjs from 'dayjs';
 
 // Icons
 import { Info } from 'lucide-react';
 
 // Lib
 import { apiFetcher } from '@/lib/api-fetcher';
+import { formatDate } from '@/lib/formatter';
 
 // Types
 import { CoinHistoricalChartDataResponse } from '@/types/coin';
@@ -98,8 +98,10 @@ export const HistoricalChart = React.memo(function HistoricalChart({
       const [timestamp, price] = priceItem;
       const [, market_caps] = data.market_caps[index];
 
-      // Use Day.js to format the timestamp
-      const formattedDate = dayjs(timestamp).format('YYYY-MM-DD');
+      const formattedDate = formatDate({
+        type: 'y-m-d',
+        date: timestamp,
+      });
 
       return {
         date: formattedDate,

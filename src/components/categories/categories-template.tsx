@@ -3,13 +3,12 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
-import dayjs from 'dayjs';
 
 // Icons
 import { Info } from 'lucide-react';
 
 // Lib
-import { formatCurrency } from '@/lib/formatter';
+import { formatCurrency, formatDate } from '@/lib/formatter';
 import { apiFetcher } from '@/lib/api-fetcher';
 
 // Types
@@ -208,7 +207,10 @@ export function CategoriesTemplate() {
               <div className="flex items-center gap-2 text-xs">
                 <span className="text-muted-foreground">Last Updated:</span>
                 <span>
-                  {dayjs(category.updated_at).format('DD MMM YYYY HH:mm')}
+                  {formatDate({
+                    type: 'full-date-time',
+                    date: category.updated_at,
+                  })}
                 </span>
               </div>
             </Card>

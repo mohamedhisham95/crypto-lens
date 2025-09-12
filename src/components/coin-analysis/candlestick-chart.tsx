@@ -3,14 +3,13 @@
 import React, { useMemo, useState } from 'react';
 import ReactECharts from 'echarts-for-react';
 import { useQuery } from '@tanstack/react-query';
-import dayjs from 'dayjs';
 import { useTheme } from 'next-themes';
 
 // Icons
 import { Info } from 'lucide-react';
 
 // Lib
-import { formatCurrency } from '@/lib/formatter';
+import { formatCurrency, formatDate } from '@/lib/formatter';
 
 // Types
 import { CoinOHLCChartDataResponse } from '@/types/coin';
@@ -90,9 +89,9 @@ export const CandlestickChart = React.memo(function CandlestickChart({
     const values: [number, number, number, number][] = [];
     for (let i = 0; i < data?.ohlc.length; i++) {
       categoryData.push(
-        dayjs(data?.ohlc[i][0]).format(
-          days === 1 ? 'DD MMM HH:mm' : 'DD MMM YYYY'
-        )
+        days === 1
+          ? formatDate({ type: 'date-month-time', date: data?.ohlc[i][0] })
+          : formatDate({ type: 'full-date', date: data?.ohlc[i][0] })
       );
 
       values.push([
@@ -142,9 +141,12 @@ export const CandlestickChart = React.memo(function CandlestickChart({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         formatter: function (params: any) {
           const data = params[0].data;
-          const date = dayjs(data[5]).format(
-            days === 1 ? 'DD MMM YYYY HH:mm' : 'DD MMM YYYY'
-          );
+
+          const date =
+            days === 1
+              ? formatDate({ type: 'full-date-time', date: data[5] })
+              : formatDate({ type: 'full-date', date: data[5] });
+
           // const date = data[5];
           const open = data[1].toFixed(2);
           const close = data[2].toFixed(2);

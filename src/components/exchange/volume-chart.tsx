@@ -3,13 +3,13 @@
 import React, { useMemo, useState } from 'react';
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { useQuery } from '@tanstack/react-query';
-import dayjs from 'dayjs';
 
 // Icons
 import { Info } from 'lucide-react';
 
 // Lib
 import { apiFetcher } from '@/lib/api-fetcher';
+import { formatCurrency, formatDate } from '@/lib/formatter';
 
 // Types
 import { ExchangeVolumeChartDataResponse } from '@/types/exchange';
@@ -44,7 +44,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart';
-import { formatCurrency } from '@/lib/formatter';
 
 const chartConfig = {
   volume: {
@@ -88,8 +87,10 @@ export const VolumeChart = React.memo(function VolumeChart({
     return data.volume.map((priceItem) => {
       const [timestamp, volume] = priceItem;
 
-      // Use Day.js to format the timestamp
-      const formattedDate = dayjs(timestamp).format('YYYY-MM-DD');
+      const formattedDate = formatDate({
+        type: 'y-m-d',
+        date: timestamp,
+      });
 
       return {
         date: formattedDate,
