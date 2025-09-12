@@ -24,7 +24,11 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 
-export function CoinSearch() {
+type Props = {
+  searchPlaceholder?: string;
+};
+
+export function CoinSearch({ searchPlaceholder }: Props) {
   // Ref for detecting outside clicks
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -83,7 +87,7 @@ export function CoinSearch() {
         <div className="relative w-full">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5" />
           <Input
-            placeholder="Search..."
+            placeholder={searchPlaceholder ?? 'Search...'}
             value={query}
             onChange={(e) => handleSearch(e.target.value)}
             className="pl-10 pr-10 !bg-card !border-0"
