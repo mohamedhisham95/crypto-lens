@@ -70,11 +70,11 @@ export function ExchangesTemplate() {
   }
 
   return (
-    <Card className="px-1.5">
-      <CardHeader className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4">
+    <Card className="px-0">
+      <CardHeader className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4 px-3">
         <CardTitle>Exchanges</CardTitle>
       </CardHeader>
-      <CardContent className="px-3 flex flex-col gap-4">
+      <CardContent className="px-0 flex flex-col gap-4">
         {/* Table */}
         <Table>
           <TableHeader>
@@ -170,7 +170,7 @@ export function ExchangesTemplate() {
         </Table>
 
         {/* Pagination */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 px-3">
           <Button
             size="icon"
             className="cursor-pointer"
