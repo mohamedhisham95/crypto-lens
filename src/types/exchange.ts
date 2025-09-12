@@ -1,3 +1,4 @@
+// Exchange Data
 export interface ConvertedVolume {
   btc: number;
   eth: number;
@@ -62,5 +63,16 @@ export type ExchangeResponse =
       success: true;
       exchange_info: ExchangeInfo;
       exchange_tickers: Ticker[];
+    }
+  | { success: false; code: number; message: string };
+
+// Exchange Volume Chart
+
+export type ExchangeVolumeChartData = [number, string];
+
+export type ExchangeVolumeChartDataResponse =
+  | {
+      success: true;
+      volume: ExchangeVolumeChartData[];
     }
   | { success: false; code: number; message: string };
