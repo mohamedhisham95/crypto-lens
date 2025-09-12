@@ -5,10 +5,12 @@ import { motion } from 'motion/react';
 import Image from 'next/image';
 
 // Icons
-import { Coins } from 'lucide-react';
+import { Coins, GitBranch, Globe, Heart } from 'lucide-react';
 
 // Constants
 import { tech_stack } from '@/constants/tech-stack';
+
+// Components
 import { TooltipWrapper } from '@/components/common';
 
 export default function LandingPage() {
@@ -153,9 +155,46 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <section className="flex flex-col items-center justify-center text-center text-xs text-muted-foreground py-4">
-        Data from CoinGecko free API. Not financial advice.
-      </section>
+      <footer className="py-4">
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false }}
+          className="flex flex-col gap-4 items-center justify-center"
+        >
+          <div className="flex items-center gap-1">
+            <span>Built with</span>
+            <Heart className="icon-sm fill-destructive stroke-destructive animate-pulse" />
+            <span>by</span>
+            <span className="text-primary font-semibold">Mohamed Hisham</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/mohamedhisham95/crypto-lens"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-xl font-semibold flex items-center gap-2 text-sm border border-primary hover:bg-primary hover:text-background transition"
+            >
+              <GitBranch className="icon-sm" />
+              <span>GitHub Repo</span>
+            </a>
+
+            <a
+              href="https://mohamedhisham95.github.io/portfolio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-xl font-semibold flex items-center gap-2 text-sm border border-primary hover:bg-primary hover:text-background transition"
+            >
+              <Globe className="icon-sm" />
+              <span>Portfolio</span>
+            </a>
+          </div>
+          <span className="text-center text-xs text-muted-foreground">
+            Data from CoinGecko free API. Not financial advice.
+          </span>
+        </motion.div>
+      </footer>
     </main>
   );
 }
