@@ -15,7 +15,7 @@ import { formatDate } from '@/lib/formatter';
 import { CoinHistoricalChartDataResponse } from '@/types/coin';
 
 // Config
-import { refetch_interval } from '@/config/refetch-interval';
+import { refetch_interval } from '@/constants/refetch-interval';
 
 // Components
 import { AreaChartSkeleton } from '@/components/skeletons';

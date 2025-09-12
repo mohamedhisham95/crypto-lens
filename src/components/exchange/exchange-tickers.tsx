@@ -127,7 +127,7 @@ export function ExchangeTickers({ data, isFetching = false }: Props) {
                         prefetch={false}
                       >
                         <div className="flex items-center gap-2 flex-wrap">
-                          <SquareArrowOutUpRight className="icon-md stroke-muted-foreground" />
+                          <SquareArrowOutUpRight className="icon-sm stroke-muted-foreground" />
                           <span>
                             {ticker.base}/{ticker.target}
                           </span>

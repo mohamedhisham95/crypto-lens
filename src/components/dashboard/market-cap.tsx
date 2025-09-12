@@ -9,7 +9,7 @@ import { Info } from 'lucide-react';
 import { formatCurrency } from '@/lib/formatter';
 
 // Config
-import { refetch_interval } from '@/config/refetch-interval';
+import { refetch_interval } from '@/constants/refetch-interval';
 
 // Components
 import { Percentage, PriceCountUp, TooltipWrapper } from '@/components/common';

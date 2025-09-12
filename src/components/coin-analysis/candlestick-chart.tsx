@@ -15,7 +15,7 @@ import { formatCurrency, formatDate } from '@/lib/formatter';
 import { CoinOHLCChartDataResponse } from '@/types/coin';
 
 // Config
-import { refetch_interval } from '@/config/refetch-interval';
+import { refetch_interval } from '@/constants/refetch-interval';
 
 // Components
 import { AlertMessage, TooltipWrapper } from '@/components/common';

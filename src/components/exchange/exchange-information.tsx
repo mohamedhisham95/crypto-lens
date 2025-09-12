@@ -1,7 +1,15 @@
 import Image from 'next/image';
 
 // Icons
-import { Globe, Info, Calendar, HandCoins, Link } from 'lucide-react';
+import {
+  Globe,
+  Info,
+  Calendar,
+  HandCoins,
+  Link,
+  ShieldHalf,
+  Handshake,
+} from 'lucide-react';
 
 // Types
 import { ExchangeInfo } from '@/types/exchange';
@@ -32,7 +40,7 @@ type Props = {
 export function ExchangeInformation({ data, isFetching }: Props) {
   return (
     <Card className="py-3">
-      <CardContent className="flex items-center justify-between px-3">
+      <CardContent className="flex items-start justify-between px-3">
         {isFetching ? (
           <>
             <div className="flex items-center space-x-4">
@@ -73,14 +81,18 @@ export function ExchangeInformation({ data, isFetching }: Props) {
               </div>
 
               <div className="flex items-center gap-2">
-                <Globe className="icon-sm stroke-muted-foreground" />
+                <TooltipWrapper side="bottom" content={'Country'}>
+                  <Globe className="icon-sm stroke-muted-foreground" />
+                </TooltipWrapper>
                 <span className="text-card-foreground text-sm">
                   {data?.country}
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <Calendar className="icon-sm stroke-muted-foreground" />
+                <TooltipWrapper side="bottom" content={'Established Year'}>
+                  <Calendar className="icon-sm stroke-muted-foreground" />
+                </TooltipWrapper>
                 <span className="text-card-foreground text-sm">
                   {data?.year_established}
                 </span>
@@ -100,7 +112,13 @@ export function ExchangeInformation({ data, isFetching }: Props) {
 
             {/* Right */}
             <div className="flex flex-col gap-2">
-              <Badge variant="secondary">#{data.trust_score_rank}</Badge>
+              <div className="flex items-center gap-2">
+                <TooltipWrapper side="bottom" content={'Trust Score Rank'}>
+                  <ShieldHalf className="icon-sm stroke-muted-foreground" />
+                </TooltipWrapper>
+                <Badge variant="secondary">#{data.trust_score_rank}</Badge>
+              </div>
+
               <div className="flex items-center gap-2">
                 <TooltipWrapper
                   side="bottom"
@@ -116,6 +134,7 @@ export function ExchangeInformation({ data, isFetching }: Props) {
                   {data?.coins}
                 </span>
               </div>
+
               <div className="flex items-center gap-2">
                 <TooltipWrapper
                   side="bottom"
@@ -125,7 +144,7 @@ export function ExchangeInformation({ data, isFetching }: Props) {
                     </div>
                   }
                 >
-                  <Calendar className="icon-sm stroke-muted-foreground" />
+                  <Handshake className="icon-sm stroke-muted-foreground" />
                 </TooltipWrapper>
                 <span className="text-card-foreground text-sm">
                   {data?.pairs}

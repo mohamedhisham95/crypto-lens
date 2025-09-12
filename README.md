@@ -3,14 +3,14 @@
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit-green?style=for-the-badge&logo=vercel)](https://crypto-lens-h.vercel.app/)
 
 A **personal hobby project** exploring financial APIs and crypto market data.  
-Built using **Next.js**, **TypeScript**, **React Query**, **TailwindCSS**, **shadcn/ui**, **Recharts**, and **ECharts**.  
+Built using **Next.js**, **TypeScript**, **React Query**, **TailwindCSS**, **shadcn/ui**, **Motion**, **Recharts**, and **ECharts**.  
 The app fetches cryptocurrency market data from [CoinGecko API](https://www.coingecko.com/),  
 displays price trends, OHLC charts, and other insights for traders and enthusiasts.
 
 > ⚠️ **Disclaimer**
 >
 > - All cryptocurrency data is provided by the [CoinGecko API](https://www.coingecko.com/).
-> - Data is **not real-time** — CoinGecko free plan enforces a **15-minute cache**.
+> - Data is **not real-time** — CoinGecko free plan enforces a **2 to 15 minute cache**.
 > - This project is **not financial advice**.
 > - It’s a **personal hobby project** exploring finance APIs and frontend optimizations.
 > - not for financial advice!
@@ -30,7 +30,7 @@ displays price trends, OHLC charts, and other insights for traders and enthusias
   - **ECharts** for advanced OHLC & candlestick visualizations.
   - **Recharts** for area charts and simple trend displays.
 - ⚡ **Optimized Data Fetching** — Built with **React Query** for caching and API efficiency.
-- 🎨 **Modern UI** — Responsive and sleek UI using **TailwindCSS** + **shadcn/ui**.
+- 🎨 **Modern UI** — Responsive and sleek UI using **TailwindCSS** + **shadcn/ui** + **Motion**.
 - 🌙 **Dark & Light Theme** — Seamless theme switching with `next-themes`.
 - 🛠️ **TypeScript Ready** — Fully typed for better maintainability.
 
@@ -49,7 +49,7 @@ displays price trends, OHLC charts, and other insights for traders and enthusias
 ## 🛠️ Tech Stack
 
 - **Framework**: [Next.js](https://nextjs.org/) + [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [TailwindCSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/)
+- **Styling**: [TailwindCSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) + [Motion](https://motion.dev/)
 - **Charts**: [Apache ECharts](https://echarts.apache.org/en/index.html) + [Recharts](https://recharts.org/en-US/)
 - **Data Fetching**: [React Query](https://tanstack.com/query)
 - **API Source**: [CoinGecko API](https://www.coingecko.com/en/api)
@@ -90,4 +90,4 @@ npm run dev
 
 Your app will be running at http://localhost:3000
 
-Built with ❤️ using Next.js, React, Shadcn, Tailwind CSS, ECharts, Recharts, and CoinGecko API
+Built with ❤️ using Next.js, React, Shadcn, Tailwind CSS, Motion, ECharts, Recharts & CoinGecko API

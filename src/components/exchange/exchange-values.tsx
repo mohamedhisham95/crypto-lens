@@ -2,11 +2,10 @@
 import { ExchangeInfo } from '@/types/exchange';
 
 // Components
-import { PriceCountUp } from '@/components/common';
+import { PriceCountUp, TrustScore } from '@/components/common';
 
 // UI
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 
 type Props = {
@@ -37,7 +36,7 @@ export function ExchangeValues({ data, isFetching }: Props) {
             {isFetching ? (
               <Skeleton className="h-4 w-[100px]" />
             ) : (
-              <Badge variant="secondary">{data.trust_score}/10</Badge>
+              <TrustScore score={data.trust_score} className="text-base" />
             )}
             <span className="text-xs text-muted-foreground">Trust Score</span>
           </div>

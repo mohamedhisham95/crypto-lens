@@ -15,7 +15,7 @@ import { formatCurrency, formatDate } from '@/lib/formatter';
 import { ExchangeVolumeChartDataResponse } from '@/types/exchange';
 
 // Config
-import { refetch_interval } from '@/config/refetch-interval';
+import { refetch_interval } from '@/constants/refetch-interval';
 
 // Components
 import { AreaChartSkeleton } from '@/components/skeletons';

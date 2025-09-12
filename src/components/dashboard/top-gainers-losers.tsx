@@ -13,7 +13,7 @@ import { formatCurrency } from '@/lib/formatter';
 import { CoinList } from '@/types/coins';
 
 // Config
-import { refetch_interval } from '@/config/refetch-interval';
+import { refetch_interval } from '@/constants/refetch-interval';
 
 // Common
 import { Percentage, TooltipWrapper } from '@/components/common';
