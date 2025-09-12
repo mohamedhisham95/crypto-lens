@@ -16,7 +16,7 @@ import { apiFetcher } from '@/lib/api-fetcher';
 import type { TrendingCoins, TrendingCoinsResponse } from '@/types/dashboard';
 
 // Config
-import { refetch_interval } from '@/config/refetch-interval';
+import { refetch_interval } from '@/constants/refetch-interval';
 
 // Components
 import { AlertMessage, Percentage, TooltipWrapper } from '@/components/common';

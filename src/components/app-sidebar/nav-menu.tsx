@@ -24,7 +24,7 @@ import {
 const nav_menu = [
   {
     title: 'Dashboard',
-    url: '/',
+    url: '/dashboard',
     icon: ChartNoAxesCombined,
   },
   {

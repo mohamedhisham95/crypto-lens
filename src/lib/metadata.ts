@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 // Config
-import { SEO } from '@/config/seo';
+import { SEO } from '@/constants/seo';
 
 export function getMetadata(page: keyof typeof SEO): Metadata {
   const { title, description } = SEO[page];

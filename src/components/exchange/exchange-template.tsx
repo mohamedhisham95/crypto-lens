@@ -9,7 +9,7 @@ import { apiFetcher } from '@/lib/api-fetcher';
 import { ExchangeInfo, ExchangeResponse } from '@/types/exchange';
 
 // Config
-import { refetch_interval } from '@/config/refetch-interval';
+import { refetch_interval } from '@/constants/refetch-interval';
 
 // Components
 import { AlertMessage } from '@/components/common';
