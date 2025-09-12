@@ -1,3 +1,8 @@
+import dayjs from 'dayjs';
+
+// Types
+import { DateFormatter } from '@/types/formatter';
+
 export function formatCurrency({
   amount,
   currency = 'USD',
@@ -72,4 +77,28 @@ export const removeProtocol = (url: string) => {
     // we can add a fallback. In this case, we just return the original string.
     return url;
   }
+};
+
+export const formatDate = ({ type, date }: DateFormatter) => {
+  let result: string = '';
+  switch (type) {
+    case 'full-date-time':
+      result = dayjs(date).format('DD MMM YYYY HH:mm');
+      break;
+    case 'full-date':
+      result = dayjs(date).format('DD MMM YYYY');
+      break;
+    case 'date-month-time':
+      result = dayjs(date).format('DD MMM HH:mm');
+      break;
+    case 'y-m-d':
+      result = dayjs(date).format('YYYY-MM-DD');
+      break;
+
+    default:
+      result = dayjs(date).format('YYYY-MM-DD');
+      break;
+  }
+
+  return result;
 };

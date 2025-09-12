@@ -17,6 +17,7 @@ import {
   ExchangeInformation,
   ExchangeValues,
   ExchangeTickers,
+  VolumeChart,
 } from '@/components/exchange';
 
 type Props = {
@@ -110,6 +111,8 @@ export function ExchangeTemplate({ exchangeId, initialData }: Props) {
             isFetching={isFetching}
           />
         )}
+
+        <VolumeChart title="Volume" exchangeId={exchangeId} />
       </div>
     </div>
   );

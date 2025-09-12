@@ -9,10 +9,10 @@ import { Info } from 'lucide-react';
 
 // Lib
 import { apiFetcher } from '@/lib/api-fetcher';
-import { formatDate } from '@/lib/formatter';
+import { formatCurrency, formatDate } from '@/lib/formatter';
 
 // Types
-import { CoinHistoricalChartDataResponse } from '@/types/coin';
+import { ExchangeVolumeChartDataResponse } from '@/types/exchange';
 
 // Config
 import { refetch_interval } from '@/config/refetch-interval';
@@ -46,12 +46,8 @@ import {
 } from '@/components/ui/chart';
 
 const chartConfig = {
-  price: {
-    label: 'Price',
-    color: 'var(--chart-1)',
-  },
-  market_cap: {
-    label: 'Market Cap',
+  volume: {
+    label: 'Volume',
     color: 'var(--chart-2)',
   },
 } satisfies ChartConfig;
@@ -59,33 +55,27 @@ const chartConfig = {
 type Props = {
   title: string;
   className?: string;
-  coinId: string;
+  exchangeId: string;
 };
 
-export const HistoricalChart = React.memo(function HistoricalChart({
+export const VolumeChart = React.memo(function VolumeChart({
   title,
   className,
-  coinId,
+  exchangeId,
 }: Props) {
   // Local State
-  const [interval, setInterval] = useState('daily');
   const [days, setDays] = useState(90);
-  const [chartType, setChartType] = useState('price');
 
-  // Coin Historical Chart Data
+  // Exchange Volume Chart Data
   const { data, isFetching, isError, error } =
-    useQuery<CoinHistoricalChartDataResponse>({
-      queryKey: ['coin_historical_chart_data', days, interval, coinId],
+    useQuery<ExchangeVolumeChartDataResponse>({
+      queryKey: ['exchange_volume_chart_data', days, exchangeId],
       queryFn: () =>
-        apiFetcher(`/coin-analysis/${coinId}/historical-chart-data`, {
-          coin_id: coinId,
+        apiFetcher(`/exchange/${exchangeId}/volume-chart-data`, {
           days,
-          interval,
-          vs_currency: 'usd',
-          precision: 2,
         }),
-      enabled: !!coinId,
-      refetchInterval: refetch_interval['coin_historical_chart_data'],
+      enabled: !!exchangeId,
+      refetchInterval: refetch_interval['exchange'],
     });
 
   // UseMemo
@@ -94,9 +84,8 @@ export const HistoricalChart = React.memo(function HistoricalChart({
       return [];
     }
 
-    return data.prices.map((priceItem, index) => {
-      const [timestamp, price] = priceItem;
-      const [, market_caps] = data.market_caps[index];
+    return data.volume.map((priceItem) => {
+      const [timestamp, volume] = priceItem;
 
       const formattedDate = formatDate({
         type: 'y-m-d',
@@ -105,8 +94,7 @@ export const HistoricalChart = React.memo(function HistoricalChart({
 
       return {
         date: formattedDate,
-        price: price,
-        market_cap: market_caps,
+        volume: Number(volume),
       };
     });
   }, [data]);
@@ -123,9 +111,7 @@ export const HistoricalChart = React.memo(function HistoricalChart({
                 <div className="flex items-center gap-1">
                   <span className="text-xs">Cache / Update Frequency:</span>
                   <span className="text-xs">
-                    {refetch_interval['coin_historical_chart_data'] /
-                      (60 * 1000)}{' '}
-                    Minutes
+                    {refetch_interval['exchange'] / (60 * 1000)} Minutes
                   </span>
                 </div>
               }
@@ -135,23 +121,6 @@ export const HistoricalChart = React.memo(function HistoricalChart({
           </div>
         </CardTitle>
         <CardAction className="flex items-center gap-2">
-          <Select value={chartType} onValueChange={setChartType}>
-            <SelectTrigger className="w-[130px]" size="sm">
-              <SelectValue placeholder="Chart" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="price">Price</SelectItem>
-              <SelectItem value="market_cap">Market Cap</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select value={interval} onValueChange={setInterval}>
-            <SelectTrigger className="w-[100px]" size="sm">
-              <SelectValue placeholder="Interval" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="daily">Daily</SelectItem>
-            </SelectContent>
-          </Select>
           <Select
             value={days.toString()}
             onValueChange={(v) => setDays(Number(v))}
@@ -160,6 +129,7 @@ export const HistoricalChart = React.memo(function HistoricalChart({
               <SelectValue placeholder="Days" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="1">1D</SelectItem>
               <SelectItem value="7">7D</SelectItem>
               <SelectItem value="14">14D</SelectItem>
               <SelectItem value="30">30D</SelectItem>
@@ -182,33 +152,22 @@ export const HistoricalChart = React.memo(function HistoricalChart({
           >
             <AreaChart data={chartData}>
               <defs>
-                <linearGradient id="fillPrice" x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id="fillVolume" x1="0" y1="0" x2="0" y2="1">
                   <stop
                     offset="0%"
-                    stopColor="var(--color-price)"
+                    stopColor="var(--color-volume)"
                     stopOpacity={0.4}
                   />
                   <stop
                     offset="100%"
-                    stopColor="var(--color-price)"
-                    stopOpacity={0}
-                  />
-                </linearGradient>
-
-                <linearGradient id="fillMarketCap" x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="0%"
-                    stopColor="var(--color-market_cap)"
-                    stopOpacity={0.4}
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="var(--color-market_cap)"
+                    stopColor="var(--color-volume)"
                     stopOpacity={0}
                   />
                 </linearGradient>
               </defs>
+
               <CartesianGrid vertical={false} />
+
               <XAxis
                 dataKey="date"
                 tickLine={false}
@@ -220,11 +179,16 @@ export const HistoricalChart = React.memo(function HistoricalChart({
                   return date.toLocaleDateString('en-US', {
                     month: 'short',
                     day: 'numeric',
+                    ...([1, 7].includes(days) && {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    }),
                   });
                 }}
               />
+
               <YAxis
-                dataKey={chartType === 'price' ? 'price' : 'market_cap'}
+                dataKey={'volume'}
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
@@ -253,29 +217,25 @@ export const HistoricalChart = React.memo(function HistoricalChart({
                 cursor={false}
                 content={
                   <ChartTooltipContent
-                    labelFormatter={(value) => {
-                      return new Date(value).toLocaleDateString('en-US', {
+                    labelFormatter={(value) =>
+                      new Date(value).toLocaleDateString('en-US', {
                         month: 'short',
                         day: 'numeric',
-                      });
-                    }}
+                      })
+                    }
                     indicator="dot"
+                    formatter={(value) => [
+                      formatCurrency({ amount: Number(value) }),
+                    ]}
                   />
                 }
               />
+
               <Area
-                dataKey={chartType}
+                dataKey={'volume'}
                 type="monotone"
-                fill={
-                  chartType === 'price'
-                    ? 'url(#fillPrice)'
-                    : 'url(#fillMarketCap)'
-                }
-                stroke={
-                  chartType === 'price'
-                    ? 'var(--color-price)'
-                    : 'var(--color-market_cap)'
-                }
+                fill={'url(#fillVolume)'}
+                stroke={'var(--color-volume)'}
                 stackId="a"
                 isAnimationActive={true}
                 dot={false}

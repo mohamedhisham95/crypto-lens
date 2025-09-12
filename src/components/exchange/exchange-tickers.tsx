@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import dayjs from 'dayjs';
 
 // Icons
 import {
@@ -18,7 +17,7 @@ import { Ticker } from '@/types/exchange';
 
 // Lib
 import { cn } from '@/lib/utils';
-import { formatCurrency } from '@/lib/formatter';
+import { formatCurrency, formatDate } from '@/lib/formatter';
 
 // UI
 import { Button } from '@/components/ui/button';
@@ -157,16 +156,18 @@ export function ExchangeTickers({ data, isFetching = false }: Props) {
                     </TableCell>
                     <TableCell>
                       <div className="flex justify-center cursor-pointer text-sm">
-                        {dayjs(ticker.last_traded_at).format(
-                          'DD MMM YYYY HH:mm'
-                        )}
+                        {formatDate({
+                          type: 'full-date-time',
+                          date: ticker.last_traded_at,
+                        })}
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="flex justify-center cursor-pointer text-sm">
-                        {dayjs(ticker.last_fetch_at).format(
-                          'DD MMM YYYY HH:mm'
-                        )}
+                        {formatDate({
+                          type: 'full-date-time',
+                          date: ticker.last_fetch_at,
+                        })}
                       </div>
                     </TableCell>
                   </TableRow>
