@@ -36,7 +36,7 @@ export function CoinLinks({ title, data, className, isFetching }: Props) {
         <Table>
           <TableBody>
             <TableRow className="bg-muted/50">
-              <TableCell>Website</TableCell>
+              <TableCell className="text-muted-foreground">Website</TableCell>
               <TableCell className="flex justify-end">
                 {isFetching ? (
                   <Skeleton className="w-14 h-4" />
@@ -57,7 +57,9 @@ export function CoinLinks({ title, data, className, isFetching }: Props) {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableHead>Official Forum</TableHead>
+              <TableHead className="text-muted-foreground">
+                Official Forum
+              </TableHead>
               <TableCell className="flex justify-end">
                 {isFetching ? (
                   <Skeleton className="w-14 h-4" />
@@ -78,7 +80,7 @@ export function CoinLinks({ title, data, className, isFetching }: Props) {
               </TableCell>
             </TableRow>
             <TableRow className="bg-muted/50">
-              <TableCell>Redit</TableCell>
+              <TableCell className="text-muted-foreground">Redit</TableCell>
               <TableCell className="flex justify-end">
                 {isFetching ? (
                   <Skeleton className="w-14 h-4" />

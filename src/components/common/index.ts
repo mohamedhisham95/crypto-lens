@@ -6,3 +6,4 @@ export * from './page-loader';
 export * from './price-range-bar';
 export * from './price-count-up';
 export * from './page-title';
+export * from './trust-score';

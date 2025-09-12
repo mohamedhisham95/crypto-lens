@@ -22,7 +22,7 @@ import { apiFetcher } from '@/lib/api-fetcher';
 import { ExchangesResponse } from '@/types/exchanges';
 
 // Components
-import { AlertMessage, TooltipWrapper } from '@/components/common';
+import { AlertMessage, TooltipWrapper, TrustScore } from '@/components/common';
 
 // UI
 import {
@@ -36,7 +36,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 
 export function ExchangesTemplate() {
   // Router
@@ -144,9 +143,10 @@ export function ExchangesTemplate() {
                       </Link>
                     </TableCell>
                     <TableCell>
-                      <Badge variant="secondary" className="uppercase w-12">
-                        {exchange?.trust_score}/10
-                      </Badge>
+                      <TrustScore
+                        score={exchange.trust_score}
+                        className="w-12"
+                      />
                     </TableCell>
                     <TableCell>
                       <TooltipWrapper
