@@ -19,7 +19,7 @@ import { refetch_interval } from '@/constants/refetch-interval';
 
 // Components
 import { AreaChartSkeleton } from '@/components/skeletons';
-import { AlertMessage, TooltipWrapper } from '@/components/common';
+import { AlertMessage, InfoTooltip } from '@/components/common';
 
 // UI
 import {
@@ -117,7 +117,7 @@ export const HistoricalChart = React.memo(function HistoricalChart({
         <CardTitle>
           <div className="flex items-center gap-2">
             <span>{title}</span>
-            <TooltipWrapper
+            <InfoTooltip
               side="bottom"
               content={
                 <div className="flex items-center gap-1">
@@ -131,10 +131,10 @@ export const HistoricalChart = React.memo(function HistoricalChart({
               }
             >
               <Info className="icon-sm stroke-muted-foreground" />
-            </TooltipWrapper>
+            </InfoTooltip>
           </div>
         </CardTitle>
-        <CardAction className="flex items-center gap-2">
+        <CardAction className="flex items-center gap-2 flex-wrap">
           <Select value={chartType} onValueChange={setChartType}>
             <SelectTrigger className="w-[130px]" size="sm">
               <SelectValue placeholder="Chart" />

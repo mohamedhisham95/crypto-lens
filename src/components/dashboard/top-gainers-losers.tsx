@@ -16,7 +16,7 @@ import { CoinList } from '@/types/coins';
 import { refetch_interval } from '@/constants/refetch-interval';
 
 // Common
-import { Percentage, TooltipWrapper } from '@/components/common';
+import { Percentage, InfoTooltip } from '@/components/common';
 
 // UI
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -47,7 +47,7 @@ export function TopGainersLosers({
         <CardTitle>
           <div className="flex items-center gap-2">
             <span>{title}</span>
-            <TooltipWrapper
+            <InfoTooltip
               side="bottom"
               content={
                 <div className="flex items-center gap-1">
@@ -60,7 +60,7 @@ export function TopGainersLosers({
               }
             >
               <Info className="icon-sm stroke-muted-foreground" />
-            </TooltipWrapper>
+            </InfoTooltip>
           </div>
         </CardTitle>
       </CardHeader>
@@ -137,7 +137,7 @@ export function TopGainersLosers({
                       </Link>
                     </TableCell>
                     <TableCell>
-                      <TooltipWrapper
+                      <InfoTooltip
                         side="bottom"
                         content={formatCurrency({
                           amount: coin.total_volume,
@@ -149,7 +149,7 @@ export function TopGainersLosers({
                             amount: coin.total_volume,
                           })}
                         </div>
-                      </TooltipWrapper>
+                      </InfoTooltip>
                     </TableCell>
                     <TableCell>
                       <Percentage

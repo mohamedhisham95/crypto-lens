@@ -24,7 +24,7 @@ import type { CoinsResponse } from '@/types/coins';
 import type { SupportedCurrenciesResponse } from '@/types/currencies';
 
 // Components
-import { AlertMessage, Percentage, TooltipWrapper } from '@/components/common';
+import { AlertMessage, Percentage, InfoTooltip } from '@/components/common';
 
 // UI
 import {
@@ -289,7 +289,7 @@ export function CoinsTemplate() {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <TooltipWrapper
+                      <InfoTooltip
                         side="bottom"
                         content={formatCurrency({
                           amount: coin.current_price,
@@ -303,7 +303,7 @@ export function CoinsTemplate() {
                             currency: currency,
                           })}
                         </div>
-                      </TooltipWrapper>
+                      </InfoTooltip>
                     </TableCell>
                     <TableCell>
                       <Percentage
@@ -330,7 +330,7 @@ export function CoinsTemplate() {
                       />
                     </TableCell>
                     <TableCell>
-                      <TooltipWrapper
+                      <InfoTooltip
                         side="bottom"
                         content={formatCurrency({
                           amount: coin.market_cap,
@@ -344,7 +344,7 @@ export function CoinsTemplate() {
                             currency: currency,
                           })}
                         </div>
-                      </TooltipWrapper>
+                      </InfoTooltip>
                     </TableCell>
                   </TableRow>
                 ))

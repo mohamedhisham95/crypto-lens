@@ -19,7 +19,7 @@ import { refetch_interval } from '@/constants/refetch-interval';
 
 // Components
 import { AreaChartSkeleton } from '@/components/skeletons';
-import { AlertMessage, TooltipWrapper } from '@/components/common';
+import { AlertMessage, InfoTooltip } from '@/components/common';
 
 // UI
 import {
@@ -105,7 +105,7 @@ export const VolumeChart = React.memo(function VolumeChart({
         <CardTitle>
           <div className="flex items-center gap-2">
             <span>{title}</span>
-            <TooltipWrapper
+            <InfoTooltip
               side="bottom"
               content={
                 <div className="flex items-center gap-1">
@@ -117,7 +117,7 @@ export const VolumeChart = React.memo(function VolumeChart({
               }
             >
               <Info className="icon-sm stroke-muted-foreground" />
-            </TooltipWrapper>
+            </InfoTooltip>
           </div>
         </CardTitle>
         <CardAction className="flex items-center gap-2">

@@ -18,7 +18,7 @@ import { CoinOHLCChartDataResponse } from '@/types/coin';
 import { refetch_interval } from '@/constants/refetch-interval';
 
 // Components
-import { AlertMessage, TooltipWrapper } from '@/components/common';
+import { AlertMessage, InfoTooltip } from '@/components/common';
 import { AreaChartSkeleton } from '@/components/skeletons';
 
 // UI
@@ -338,7 +338,7 @@ export const CandlestickChart = React.memo(function CandlestickChart({
         <CardTitle>
           <div className="flex items-center gap-2">
             <span>{title}</span>
-            <TooltipWrapper
+            <InfoTooltip
               side="bottom"
               content={
                 <div className="flex items-center gap-1">
@@ -351,7 +351,7 @@ export const CandlestickChart = React.memo(function CandlestickChart({
               }
             >
               <Info className="icon-sm stroke-muted-foreground" />
-            </TooltipWrapper>
+            </InfoTooltip>
           </div>
         </CardTitle>
         <CardAction className="flex items-center gap-2">
