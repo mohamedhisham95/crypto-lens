@@ -11,7 +11,7 @@ import { Coins, GitBranch, Globe, Heart } from 'lucide-react';
 import { tech_stack } from '@/constants/tech-stack';
 
 // Components
-import { TooltipWrapper } from '@/components/common';
+import { InfoTooltip } from '@/components/common';
 
 export default function LandingPage() {
   return (
@@ -141,7 +141,7 @@ export default function LandingPage() {
           className="flex flex-wrap justify-center gap-3"
         >
           {tech_stack.map((item, index) => (
-            <TooltipWrapper key={index} side="bottom" content={item.name}>
+            <InfoTooltip key={index} content={item.name}>
               <Image
                 src={item.logo}
                 alt={item.name}
@@ -149,7 +149,7 @@ export default function LandingPage() {
                 height={100}
                 className="w-16 h-16 object-contain bg-card p-2 rounded-full"
               />
-            </TooltipWrapper>
+            </InfoTooltip>
           ))}
         </motion.div>
       </section>

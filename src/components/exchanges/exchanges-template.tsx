@@ -22,7 +22,7 @@ import { apiFetcher } from '@/lib/api-fetcher';
 import { ExchangesResponse } from '@/types/exchanges';
 
 // Components
-import { AlertMessage, TooltipWrapper, TrustScore } from '@/components/common';
+import { AlertMessage, InfoTooltip, TrustScore } from '@/components/common';
 
 // UI
 import {
@@ -149,7 +149,7 @@ export function ExchangesTemplate() {
                       />
                     </TableCell>
                     <TableCell>
-                      <TooltipWrapper
+                      <InfoTooltip
                         side="bottom"
                         content={formatCurrency({
                           amount: exchange.trade_volume_24h_btc,
@@ -161,7 +161,7 @@ export function ExchangesTemplate() {
                             amount: exchange.trade_volume_24h_btc,
                           })}
                         </div>
-                      </TooltipWrapper>
+                      </InfoTooltip>
                     </TableCell>
                   </TableRow>
                 ))

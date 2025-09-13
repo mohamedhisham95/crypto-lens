@@ -18,7 +18,7 @@ import { ExchangeInfo } from '@/types/exchange';
 import { removeProtocol } from '@/lib/formatter';
 
 // Components
-import { TooltipWrapper } from '@/components/common';
+import { InfoTooltip } from '@/components/common';
 
 // UI
 import { Card, CardContent } from '@/components/ui/card';
@@ -81,18 +81,18 @@ export function ExchangeInformation({ data, isFetching }: Props) {
               </div>
 
               <div className="flex items-center gap-2">
-                <TooltipWrapper side="bottom" content={'Country'}>
+                <InfoTooltip side="bottom" content={'Country'}>
                   <Globe className="icon-sm stroke-muted-foreground" />
-                </TooltipWrapper>
+                </InfoTooltip>
                 <span className="text-card-foreground text-sm">
                   {data?.country}
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <TooltipWrapper side="bottom" content={'Established Year'}>
+                <InfoTooltip side="bottom" content={'Established Year'}>
                   <Calendar className="icon-sm stroke-muted-foreground" />
-                </TooltipWrapper>
+                </InfoTooltip>
                 <span className="text-card-foreground text-sm">
                   {data?.year_established}
                 </span>
@@ -113,14 +113,14 @@ export function ExchangeInformation({ data, isFetching }: Props) {
             {/* Right */}
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
-                <TooltipWrapper side="bottom" content={'Trust Score Rank'}>
+                <InfoTooltip side="bottom" content={'Trust Score Rank'}>
                   <ShieldHalf className="icon-sm stroke-muted-foreground" />
-                </TooltipWrapper>
+                </InfoTooltip>
                 <Badge variant="secondary">#{data.trust_score_rank}</Badge>
               </div>
 
               <div className="flex items-center gap-2">
-                <TooltipWrapper
+                <InfoTooltip
                   side="bottom"
                   content={
                     <div className="flex items-center gap-1">
@@ -129,14 +129,14 @@ export function ExchangeInformation({ data, isFetching }: Props) {
                   }
                 >
                   <HandCoins className="icon-sm stroke-muted-foreground" />
-                </TooltipWrapper>
+                </InfoTooltip>
                 <span className="text-card-foreground text-sm">
                   {data?.coins}
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <TooltipWrapper
+                <InfoTooltip
                   side="bottom"
                   content={
                     <div className="flex items-center gap-1">
@@ -145,7 +145,7 @@ export function ExchangeInformation({ data, isFetching }: Props) {
                   }
                 >
                   <Handshake className="icon-sm stroke-muted-foreground" />
-                </TooltipWrapper>
+                </InfoTooltip>
                 <span className="text-card-foreground text-sm">
                   {data?.pairs}
                 </span>

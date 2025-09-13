@@ -15,7 +15,7 @@ import { apiFetcher } from '@/lib/api-fetcher';
 import type { CategoryResponse } from '@/types/categories';
 
 // Components
-import { AlertMessage, Percentage, TooltipWrapper } from '@/components/common';
+import { AlertMessage, Percentage, InfoTooltip } from '@/components/common';
 
 // UI
 import {
@@ -112,7 +112,7 @@ export function CategoriesTemplate() {
         ? data.categories?.slice(0, 10).map((category, index) => (
             <Card
               key={index}
-              className="p-4 flex flex-row items-start justify-between"
+              className="p-4 flex flex-col xl:flex-row gap-2 items-start xl:justify-between"
             >
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-2 text-sm">
@@ -136,7 +136,7 @@ export function CategoriesTemplate() {
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-muted-foreground">Market Cap:</span>
-                  <TooltipWrapper
+                  <InfoTooltip
                     side="bottom"
                     content={formatCurrency({
                       amount: category.market_cap,
@@ -148,7 +148,7 @@ export function CategoriesTemplate() {
                         amount: category.market_cap,
                       })}
                     </span>
-                  </TooltipWrapper>
+                  </InfoTooltip>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-muted-foreground">
@@ -161,7 +161,7 @@ export function CategoriesTemplate() {
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-muted-foreground">Volume 24H:</span>
-                  <TooltipWrapper
+                  <InfoTooltip
                     side="bottom"
                     content={formatCurrency({
                       amount: category.market_cap,
@@ -173,7 +173,7 @@ export function CategoriesTemplate() {
                         amount: category.volume_24h,
                       })}
                     </span>
-                  </TooltipWrapper>
+                  </InfoTooltip>
                 </div>
 
                 {category.top_3_coins_id.length > 0 && (

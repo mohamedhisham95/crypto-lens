@@ -12,7 +12,7 @@ import { formatCurrency } from '@/lib/formatter';
 import { refetch_interval } from '@/constants/refetch-interval';
 
 // Components
-import { PriceCountUp, TooltipWrapper } from '@/components/common';
+import { PriceCountUp, InfoTooltip } from '@/components/common';
 
 // UI
 import {
@@ -48,7 +48,7 @@ export const Volume = React.memo(function Volume({
       <CardHeader>
         <CardDescription className="flex items-center gap-2 font-semibold">
           <span>24H Trading Volume</span>
-          <TooltipWrapper
+          <InfoTooltip
             side="bottom"
             content={
               <div className="flex items-center gap-1">
@@ -60,7 +60,7 @@ export const Volume = React.memo(function Volume({
             }
           >
             <Info className="icon-sm stroke-muted-foreground" />
-          </TooltipWrapper>
+          </InfoTooltip>
         </CardDescription>
         <CardTitle>
           {isFetching ? (
@@ -71,7 +71,7 @@ export const Volume = React.memo(function Volume({
                 value={totalVolume[currency]}
                 currency={currency.toUpperCase()}
               />
-              <TooltipWrapper
+              <InfoTooltip
                 side="bottom"
                 content={formatCurrency({
                   amount: totalVolume[currency],
@@ -79,7 +79,7 @@ export const Volume = React.memo(function Volume({
                 })}
               >
                 <Info className="icon-sm stroke-muted-foreground" />
-              </TooltipWrapper>
+              </InfoTooltip>
             </div>
           )}
         </CardTitle>

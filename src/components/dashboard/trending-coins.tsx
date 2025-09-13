@@ -19,7 +19,7 @@ import type { TrendingCoins, TrendingCoinsResponse } from '@/types/dashboard';
 import { refetch_interval } from '@/constants/refetch-interval';
 
 // Components
-import { AlertMessage, Percentage, TooltipWrapper } from '@/components/common';
+import { AlertMessage, Percentage, InfoTooltip } from '@/components/common';
 
 // UI
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -55,7 +55,7 @@ export function TrendingCoins({ title, initialData, className = '' }: Props) {
         <CardTitle>
           <div className="flex items-center gap-2">
             <span>{title}</span>
-            <TooltipWrapper
+            <InfoTooltip
               side="bottom"
               content={
                 <div className="flex items-center gap-1">
@@ -67,7 +67,7 @@ export function TrendingCoins({ title, initialData, className = '' }: Props) {
               }
             >
               <Info className="icon-sm stroke-muted-foreground" />
-            </TooltipWrapper>
+            </InfoTooltip>
           </div>
         </CardTitle>
       </CardHeader>
