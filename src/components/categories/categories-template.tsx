@@ -112,7 +112,7 @@ export function CategoriesTemplate() {
         ? data.categories?.slice(0, 10).map((category, index) => (
             <Card
               key={index}
-              className="p-4 flex flex-row items-start justify-between"
+              className="p-4 flex flex-col xl:flex-row gap-2 items-start xl:justify-between"
             >
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-2 text-sm">
