@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
 // Providers
@@ -32,7 +33,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AppProviders>{children}</AppProviders>
+        <AppProviders>
+          {children}
+          <Analytics />
+        </AppProviders>
       </body>
     </html>
   );
